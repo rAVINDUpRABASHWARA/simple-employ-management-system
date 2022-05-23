@@ -4,12 +4,14 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 
+import employeeRouter from './routes/employeeroutes.js';
+
 const app = express();
 
 dotenv.config();
 
 //assign a port to run the server
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 5000;
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -25,6 +27,12 @@ const connection = mongoose.connection;
 connection.once("open", ()=> {
     console.log("MongoDB Conncetion Success!!");
 })
+
+//the following line is use to create this ('http://localhost:5000/employee') url and call it 
+/* what happens in behind is that when user call that url mention above 
+the model files will load to the server */
+
+app.use('/api/employee', employeeRouter);
 
 //get the current port number
 app.listen(PORT, () => {
