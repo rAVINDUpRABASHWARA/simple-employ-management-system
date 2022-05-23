@@ -11,6 +11,8 @@ Creating a simple employ management system using MERN stack
   <li>Create the basic backend using <code>npm init</code> and <code>npm install express mongoose cors dotenv</code></li>
   <li>Create the <i>.gitignore</i> file to avoid pushing node-modules.</li>
   <li>Create the basic frontend using <code>npx create-react-app frontend</code></li>
+  <li>Create <b>Models</b> and <b>server.js</b> file.</li>
+  <li>Modify the <b>package.json</b> file to run the backend using <code>npm start</code> code.</li>
 </ol>
 
 
