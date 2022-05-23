@@ -7,6 +7,8 @@ import employee from '../models/employee.js';
 import employeeaddress from '../models/employeeaddress.js';
 import employeecontacts from '../models/employeecontacts.js';
 
+import bcryptjs from 'bcryptjs';
+
 const router = express.Router();
 
 /* Creation of CRUD operations */
@@ -24,6 +26,7 @@ router.route("/add").post((req, res) => {
     const Last_Name = req.body.Last_Name;
     const DoB = req.body.DoB;
     const NIC = req.body.NIC;
+    const password = req.body.password;
     const Department = req.body.Department;
     const Designation = req.body.Designation;
     
@@ -34,6 +37,7 @@ router.route("/add").post((req, res) => {
         Last_Name,
         DoB,
         NIC,
+        password,
         Department,
         Designation
 
@@ -89,6 +93,37 @@ router.route("/add_contact").post((req, res) => {
     })
 })
 
+//login user
 
+router.route("/login").post(async(req, res) => {
+    try {
+        const NIC = req.body.NIC;
+        const password = req.body.password;
+        
+        //Find User if Exists
+        const user = await employee.findOne({NIC : NIC});
+        if(user){
+            //verify Password
+            const isMatch = await bcryptjs.compare(password, user.password);
+            
+                if(isMatch) {
+                    //Generate Token Which is define in employeeSchema
+                    const token = await user.generateToken();
+                    res.cookie("jwt", token, {
+                        // Token expires in 24 hours
+                        expires : new Date(Date.now() + 86400000),
+                        httpOnly : true
+                    })
+                    res.status(200).send("Logged in");
+            }else {
+                res.status(400).send("InValid Password");
+            }
+        }else {
+            res.status(400).send("InValid NIC");
+        }
+    } catch (error) {
+        res.status(400).send(error);
+    }
+})
 
 export default router;

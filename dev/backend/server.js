@@ -2,6 +2,9 @@ import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import cors from 'cors';
+import bcryptjs from 'bcryptjs';
+import jwt from 'jsonwebtoken';
+import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
 
 import employeeRouter from './routes/employeeroutes.js';
@@ -15,6 +18,11 @@ const PORT = process.env.PORT || 5000;
 
 app.use(cors());
 app.use(bodyParser.json());
+
+//These methods to get data and cookies from Frontend
+app.use(express.json());
+app.use(express.urlencoded({extended : false}));
+app.use(cookieParser());
 
 //get the MongoDB url to connect the application with mongoDB
 const URL = process.env.MONGODB_URI;
