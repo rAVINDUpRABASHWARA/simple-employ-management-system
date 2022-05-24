@@ -28,6 +28,8 @@ export default function Navbar() {
                     
                         <NavLink to="/login" className="btn btn-outline-primary ms-auto px-4 rounded-pill">
                             <i className="fa fa-sign-in me-2"></i>Login</NavLink>
+                        <NavLink to="/logout" className="btn btn-outline-primary ms-auto px-4 rounded-pill">
+                            <i className="fa fa-sign-out me-2"></i>Logout</NavLink>
                     </div>
                 </div>
             </nav>

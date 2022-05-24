@@ -4,8 +4,8 @@ export default function Services() {
     return (
         <div>
             <section id="service">
-                <div className="container">
-                    <div className="row">
+                <div className="container my-5 py-5">
+                    <div className="row mb-5">
                         <div className="col-12">
                             <h3 className="fs-5 text-center mb-0">Our Services</h3>
                             <h1 className="display-6 text-center mb-4">Our <b>Awesome</b> Services</h1>

@@ -7,16 +7,11 @@ import jwt from 'jsonwebtoken';
 //In mongodb there is something call schema, so there is a method in mongoose and assign that method to a constant variable
 const employeeSchema = new mongoose.Schema(
     {
-        EmpId: {
-            type: String,
-            unique: true,
-            required: true
-        },
-        First_Name: {
+        FirstName: {
             type: String,
             required: true
         },
-        Last_Name: {
+        LastName: {
             type: String,
             required: true
         },
@@ -26,12 +21,37 @@ const employeeSchema = new mongoose.Schema(
         },
         NIC: {
             type: String,
-            unique: true,
+            required: true,
+            unique: true
+        },
+        address1 : {
+            type: String,
             required: true
+        },
+        address2 : {
+            type: String,
+            default: ''
+            
+        },
+        address3 : {
+            type: String,
+            default: ''
+            
+        },
+        contactNo1 : {
+            type: String,
+            required: true
+        },
+        contactNo2 : {
+            type: String,
+            default: ''
+        },
+        contactNo3 : {
+            type: String,
+            default: ''
         },
         password : {
             type: String,
-            unique: true,
             required: true
         },
         Department: {
@@ -42,44 +62,21 @@ const employeeSchema = new mongoose.Schema(
             type: String,
             required: true
         },
-        isAdmin: {
-            type: Boolean,
-            default: false,
-            required: true
-        },
         RegisteredDate: {
             type: Date,
             default: Date.now
         },
-        tokens : [
-            {       
-                token : {
-                    type : String,
-                    required : true
-                }   
-            }
-        ]
+        isAdmin: {
+            type: Boolean,
+            default: false,
+            required: true
+        }
+    },
+    {
+        timestamps :true,
     }
 );
 
-//Hashing Password to Secure
-employeeSchema.pre('save', async function(next){
-    if(this.isModified('password')) {
-        this.password = bcryptjs.hashSync(this.password, 10);
-    }
-    next();
-})
-
-//Generate tokens to verify User
-employeeSchema.methods.generateToken = async function() {
-    try {
-        let generatedToken = jwt.sign({_id : this._id}, process.env.SECRET_KEY);
-        this.tokens = this.tokens.concat({token : generatedToken});
-        await this.save();
-    } catch (error) {
-        console.log(error);
-    }
-}
 //data is add to the routes and that data will send to the DB through modles.
 const employee = mongoose.model('employee', employeeSchema);
 export  default employee;

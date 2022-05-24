@@ -8,6 +8,7 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import {Route, Routes} from 'react-router-dom'
 import Login from './components/Login';
+import Logout from './components/Logout';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
             <Route exact path='/contact' element={<Contact/>} />
             <Route exact path='/services' element={<Services/>} />
             <Route exact path='/login' element={<Login/>} />
+            <Route exact path='/logout' element={<Logout/>} />
           </Routes>
         <Footer/>
     </>
