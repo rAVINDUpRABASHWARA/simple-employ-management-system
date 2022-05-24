@@ -119,6 +119,57 @@ router.get(
         res.status(401).send({ message: 'Employee dose not exists.'});
     })
 )
+
+//update Employee details
+
+router.put(
+    '/update_employee',
+    // isAdmin,
+    // isAuth,
+    expressAsyncHandler(async (req, res) => {
+        const remployee = await employee.findById(req.params.id);
+        if(remployee) {
+            remployee.FirstName = req.body.FirstName || remployee.FirstName;
+            remployee.LastName = req.body.LastName || remployee.LastName;
+            remployee.DoB = req.body.DoB || remployee.DoB;
+            remployee.NIC = req.body.NIC || remployee.NIC;
+            remployee.address1 = req.body.address1 || remployee.address1;
+            remployee.address2 = req.body.address2 || remployee.address2;
+            remployee.address3 = req.body.address3 || remployee.address3;
+            remployee.contactNo1 = req.body.contactNo1 || remployee.contactNo1;
+            remployee.contactNo2 = req.body.contactNo2 || remployee.contactNo2;
+            remployee.contactNo3 = req.body.contactNo3 || remployee.contactNo3;
+            remployee.password = req.body.password || remployee.password;
+
+            const update_employee = await remployee.save();
+            res.send({ message: 'Employee Updated', remployee: update_employee });
+        } else {
+            res.status(404).send({ message: 'Employee Not Found'});
+        }
+    })
+);
+
+//delete employee
+
+router.delete(
+    '/delete_employee/:id',
+    // isAdmin,
+    // isAuth,
+    expressAsyncHandler(async (req, res) => {
+        const remployee = await employee.findById(req.params.id);
+        if(remployee) {
+            if (remployee.isAdmin) {
+                res.status(400).send({message: 'Can Not Delete Admin User'});
+                return;
+            }
+            await remployee.remove();
+            res.send({ message : 'Employee Deleted'});
+        } else {
+            res.status(404).send({ message: 'Employee Not Found'});
+        }
+    })
+);
+
 //login user
 
 router.post(
@@ -143,11 +194,6 @@ router.post(
 
 
 //Logout 
-
-router.route('/logout').get((req, res) => {
-    res.clearCookie("jwt", {path : '/'})
-    res.status(200).send("User Logged Out");
-})
 
 
 
