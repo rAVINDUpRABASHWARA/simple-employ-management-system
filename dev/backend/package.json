@@ -2,7 +2,6 @@
   "name": "backend",
   "type": "module",
   "version": "1.0.0",
-  "proxy": "http://localhost:5000/api/employee",
   "description": "",
   "main": "index.js",
   "scripts": {
