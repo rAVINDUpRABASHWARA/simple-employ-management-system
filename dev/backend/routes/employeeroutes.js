@@ -4,8 +4,10 @@ import express from 'express';
 //import employee models
 
 import employee from '../models/employee.js';
-import employeeaddress from '../models/employeeaddress.js';
-import employeecontacts from '../models/employeecontacts.js';
+
+import bcryptjs from 'bcryptjs';
+import expressAsyncHandler from 'express-async-handler';
+import { generateToken, isAdmin, isAuth } from '../util.js';
 
 const router = express.Router();
 
@@ -17,77 +19,141 @@ the model files will load to the server and choose the applicable operation */
 
 //add new employee
 
-router.route("/add").post((req, res) => {
-
-    const EmpId = req.body.EmpId;
-    const First_Name = req.body.First_Name;
-    const Last_Name = req.body.Last_Name;
-    const DoB = req.body.DoB;
-    const NIC = req.body.NIC;
-    const Department = req.body.Department;
-    const Designation = req.body.Designation;
-    
-    const new_employee = new employee({
-        
-        EmpId,
-        First_Name,
-        Last_Name,
-        DoB,
-        NIC,
-        Department,
-        Designation
-
+router.post(
+    '/add_employee',
+    expressAsyncHandler(async (req, res)=> {
+        const newEmployee = new employee({
+            FirstName: req.body.FirstName,
+            LastName: req.body.LastName,
+            DoB: req.body.DoB,
+            NIC: req.body.NIC,
+            address1: req.body.address1,
+            contactNo1: req.body.contactNo1,
+            password: bcryptjs.hashSync(req.body.password),
+            Department: req.body.Department,
+            Designation: req.body.Designation
+        });
+        const remployee = await newEmployee.save();
+        res.send({
+            _id: remployee._id,
+            FirstName: remployee.FirstName,
+            LastName: remployee.LastName,
+            DoB: remployee.DoB,
+            NIC: remployee.NIC,
+            address1: remployee.address1,
+            contactNo: remployee.contactNo1,
+            password: remployee.password,
+            Department: remployee.Department,
+            Designation: remployee.Designation,
+            isAdmin: remployee.isAdmin,
+            token: generateToken(remployee),
+                
+        });
     })
-
-    //save the record to the DB and then and catch to get the response if the CURD is successful or not
-    new_employee.save()
-    .then(() => {
-        res.json("Employee Added to the system");// send a message to the FE in json format.
-    }).catch((err) => {
-        console.log(err);
-    })
-})
-
+);
 
 //add employee address
-router.route("/add_address").post((req, res) => {
-    const EmpId = req.body.EmpId;
-    const Address = req.body.Address;
+router.put(
+    '/add_address/:id',
+    // isAdmin,
+    // isAuth,
+    expressAsyncHandler(async (req, res) => {
+        const remployee = await employee.findById(req.params.id);
+        if(remployee) {
+            remployee.address2 = req.body.address2 || remployee.address2;
+            remployee.address3 = req.body.address3 || remployee.address3;
+            remployee.isAdmin = Boolean(req.body.isAdmin);
 
-    const new_employeeaddress = new employeeaddress ({
-
-        EmpId,
-        Address
-
+            const updateEmployee = await remployee.save();
+            res.send({message: "New Address Added", remployee: updateEmployee});
+        } else {
+            res.status(404).send({message: 'Employee Not Found'});
+        }
     })
+)
 
-    new_employeeaddress.save()
-    .then(() => {
-        res.json("Employee Address is added to the system");
-    }).catch((err) => {
-        console.log(err);
-    })
-})
 
 //add employee contact Number
-router.route("/add_contact").post((req, res) => {
-    const EmpId = req.body.EmpId;
-    const ContactNo = req.body.ContactNo;
+router.put(
+    '/add_contact/:id',
+    // isAdmin,
+    // isAuth,
+    expressAsyncHandler(async (req, res) => {
+        const remployee = await employee.findById(req.params.id);
+        if(remployee) {
+            remployee.contactNo2 = req.body.contactNo2 || remployee.contactNo2;
+            remployee.contactNo3 = req.body.contactNo3 || remployee.contactNo3;
+            remployee.isAdmin = Boolean(req.body.isAdmin);
 
-    const new_employcontact = new employeecontacts ({
-
-        EmpId,
-        ContactNo
-
+            const updateEmployee = await remployee.save();
+            res.send({message: "New Contact No. Added", remployee: updateEmployee});
+        } else {
+            res.status(404).send({message: 'Employee Not Found'});
+        }
     })
+)
 
-    new_employcontact.save()
-    .then(() => {
-        res.json("Employee Contact is added to the system");
-    }).catch((err) => {
-        console.log(err);
+//Get All Employees
+
+router.get(
+    '/employees',
+    // isAdmin,
+    // isAuth,
+    expressAsyncHandler(async (req, res) => {
+        const remployee = await employee.find({});
+        res.send(remployee);
     })
+);
+
+//Get One Employee
+
+router.get(
+    '/one_employee',
+    // isAdmin,
+    // isAuth,
+    expressAsyncHandler(async (req, res) => {
+        const remployee = await employee.findOne({NIC: req.body.NIC });
+        if(remployee) {
+            res.send(remployee);
+        }
+        res.status(401).send({ message: 'Employee dose not exists.'});
+    })
+)
+//login user
+
+router.post(
+    '/signin',
+    expressAsyncHandler(async (req, res) => {
+        const remployee = await employee.findOne({NIC: req.body.NIC });
+        if(remployee) {
+            if(bcryptjs.compareSync(req.body.password, remployee.password)) {
+                res.send({
+                    _id: remployee._id,
+                    FirstName: remployee.FirstName,
+                    LastName: remployee.LastName,
+                    isAdmin: remployee.isAdmin,
+                    token: generateToken(remployee),
+                });
+                return;
+            }
+        }
+        res.status(401).send({ message: 'Invalid NIC and password'});
+    })
+);
+
+
+//Logout 
+
+router.route('/logout').get((req, res) => {
+    res.clearCookie("jwt", {path : '/'})
+    res.status(200).send("User Logged Out");
 })
+
+
+
+
+
+
 
 
 
