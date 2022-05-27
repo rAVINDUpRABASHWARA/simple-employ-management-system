@@ -11,6 +11,7 @@ import Login from './components/Login';
 import Logout from './components/Logout';
 import Dashboard from './components/Dashboard';
 import AddEmployee from './components/AddEmployee';
+import EditData from './components/EditData';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
             <Route exact path='/login' element={<Login/>} />
             <Route exact path='/dashboad' element={<Dashboard/>} />
             <Route exact path='/addemployee' element={<AddEmployee/>} />
+            <Route exact path='/editdata' element={<EditData/>} />
             <Route exact path='/logout' element={<Logout/>} />
           </Routes>
         <Footer/>
