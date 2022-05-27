@@ -1,6 +1,43 @@
-import React from 'react'
+import axios from 'axios';
+import React, { useState } from 'react'
 
 export default function AddEmployee() {
+
+    const [FirstName, setfirstName] = useState('');
+    const [LastName, setlastName] = useState('');
+    const [DoB, setdateOfBirth] = useState('');
+    const [NIC, setNIC] = useState('');
+    const [address1, setaddress] = useState('');
+    const [contactNo1, setcontactNo] = useState('');
+    const [Department, setdepartment] = useState('');
+    const [Designation, setdesignation] = useState('');
+    const [password, setpassword] = useState('');
+
+    function addEmployee(e) {
+        e.preventDefault();
+
+        const NewEmployee = {
+            FirstName,
+            LastName,
+            DoB,
+            NIC,
+            address1,
+            contactNo1,
+            Department,
+            Designation,
+            password
+        }
+
+        console.log(NewEmployee);
+        axios.post('/add_employee', NewEmployee)
+        .then(() => {
+            alert("Employee Added");
+        }).catch((err) => {
+            alert(err);
+        })
+
+    }
+
     return (
         <div>
             <div>
@@ -25,42 +62,42 @@ export default function AddEmployee() {
                             </div>
                             <div className="col-md-6 p-5">
                                 <h1 className="display-6 fw-bolder mb-5">ADD NEW EMPLOYEE</h1>
-                                    <form >
+                                    <form  onSubmit={addEmployee}>
                                         <div class="mb-3">
-                                            <label for="exampleInputEmail1" class="form-label">First Name</label>
-                                            <input type="text" class="form-control" id="firstName" aria-describedby="emailHelp" name='firstName' required  />
+                                            <label htmlFor="exampleInputEmail1" class="form-label">First Name</label>
+                                            <input type="text" class="form-control" id="firstName" aria-describedby="emailHelp" name='FirstName' onChange={(e) => {setfirstName(e.target.value)}} required  />
                                         </div>
                                         <div class="mb-3">
-                                            <label for="exampleInputEmail1" class="form-label">Last Name</label>
-                                            <input type="text" class="form-control" id="lastName" aria-describedby="emailHelp" name='lastName' required  />
+                                            <label htmlFor="exampleInputEmail1" class="form-label">Last Name</label>
+                                            <input type="text" class="form-control" id="lastName" aria-describedby="emailHelp" name='LastName' onChange={(e) => {setlastName(e.target.value)}} required  />
                                         </div>
                                         <div class="mb-3">
-                                            <label for="exampleInputEmail1" class="form-label">Date of Birth</label>
-                                            <input type="text" class="form-control" id="dateOfBirth" aria-describedby="emailHelp" name='dateOfBirth' required  />
+                                            <label htmlFor="exampleInputEmail1" class="form-label">Date of Birth</label>
+                                            <input type="text" class="form-control" id="dateOfBirth" aria-describedby="emailHelp" name='DoB' onChange={(e) => {setdateOfBirth(e.target.value)}} required  />
                                         </div>
                                         <div class="mb-3">
-                                            <label for="exampleInputEmail1" class="form-label">NIC Number</label>
-                                            <input type="text" class="form-control" id="nicNumber" aria-describedby="emailHelp" name='NIC' required  />
+                                            <label htmlFor="exampleInputEmail1" class="form-label">NIC Number</label>
+                                            <input type="text" class="form-control" id="nicNumber" aria-describedby="emailHelp" name='NIC' onChange={(e) => {setNIC(e.target.value)}} required  />
                                         </div>
                                         <div class="mb-3">
-                                            <label for="exampleInputEmail1" class="form-label">Address</label>
-                                            <input type="text" class="form-control" id="address" aria-describedby="emailHelp" name='address' required  />
+                                            <label htmlFor="exampleInputEmail1" class="form-label">Address</label>
+                                            <input type="text" class="form-control" id="address" aria-describedby="emailHelp" name='address1' onChange={(e) => {setaddress(e.target.value)}} required  />
                                         </div>
                                         <div class="mb-3">
-                                            <label for="exampleInputEmail1" class="form-label">Contact No.</label>
-                                            <input type="text" class="form-control" id="contactNo" aria-describedby="emailHelp" name='contactNo' required  />
+                                            <label htmlFor="exampleInputEmail1" class="form-label">Contact No.</label>
+                                            <input type="text" class="form-control" id="contactNo" aria-describedby="emailHelp" name='contactNo1' onChange={(e) => {setcontactNo(e.target.value)}} required  />
                                         </div>
                                         <div class="mb-3">
-                                            <label for="exampleInputEmail1" class="form-label">Department</label>
-                                            <input type="text" class="form-control" id="department" aria-describedby="emailHelp" name='department' required  />
+                                            <label htmlFor="exampleInputEmail1" class="form-label">Department</label>
+                                            <input type="text" class="form-control" id="department" aria-describedby="emailHelp" name='Department' onChange={(e) => {setdepartment(e.target.value)}} required  />
                                         </div>
                                         <div class="mb-3">
-                                            <label for="exampleInputEmail1" class="form-label">Designation</label>
-                                            <input type="text" class="form-control" id="designation" aria-describedby="emailHelp" name='designation' required  />
+                                            <label htmlFor="exampleInputEmail1" class="form-label">Designation</label>
+                                            <input type="text" class="form-control" id="designation" aria-describedby="emailHelp" name='Designation' onChange={(e) => {setdesignation(e.target.value)}} required  />
                                         </div>
                                         <div class="mb-3">
-                                            <label for="exampleInputPassword1" class="form-label">Password</label>
-                                            <input type="password" class="form-control" id="exampleInputPassword1" name='password' required  />
+                                            <label htmlFor="exampleInputPassword1" class="form-label">Password</label>
+                                            <input type="password" class="form-control" id="exampleInputPassword1" name='password' onChange={(e) => {setpassword(e.target.value)}} required  />
                                         </div>
                                         <div id="emailHelp" class="form-text mb-3">We'll never share your login details with anyone else.</div>
                                         <button type="submit" class="btn btn-primary">Add New Employee</button>

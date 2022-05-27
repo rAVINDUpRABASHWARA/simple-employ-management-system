@@ -1,11 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-import EmployeeInfo from '../Screens/EmployeeInfo';
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
 
-export default function Dashboard(props) {
+import EditEmployeeData from '../Screens/EditEmployeeData';
+import AddDepartment from '../Screens/AddDepartment';
+
+export default function EditData() {
 
     const [employees, setmployee] = useState([]);
     const [openPopup, setOpenPopup] = useState(false);
+    const [DopenPopup, DsetOpenPopup] = useState(false);
     const [recordinfo, setRecordInfo] = useState([]);
 
     const getEmployeeData = async () => {
@@ -32,16 +37,15 @@ export default function Dashboard(props) {
     }, []);
 
 
+    const openDPopup = () => {
+        DsetOpenPopup(true)
+    }
+
     const openInPopup = id => {
         console.log(id);
         setOpenPopup(true);
         getOneEmployeeData(id);
     }
-
-    // const message = () => {
-    //     alert("working........");
-    // }
-
     return (
         <div>
             <div>
@@ -49,10 +53,16 @@ export default function Dashboard(props) {
                     <div className="container">
                         <div className="row justify-content-center">
                             <div className="col-md-8 mt-5">
-                                <h1 className="display-4 fw-bolder mb-4 text-center text-white">DashBoard</h1>
-                                <p className="lead text-center fs-4 mb-5 text-white">
+                                <h1 className="display-4 fw-bolder mb-4 text-center text-white">Edit Data</h1>
+                                <p className="lead text-center fs-4 mb-6 text-white">
                                     Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex iure ab odio molestiae numquam ea autem placeat exercitationem. Dolorum architecto rerum aliquid molestiae natus quaerat corporis omnis eligendi repudiandae et.
                                 </p>
+                                <div className="button d-flex justify-content-center mb-5">
+                                <button className="btn btn-light me-4 rounded-pill px-4 py-2">
+                                    Edit Employee Data</button>
+                                <button onClick={() => openDPopup()} className="btn btn-outline-light me-4 rounded-pill px-4 py-2">
+                                    Add Department</button>
+                            </div>
                             </div>
                         </div>
                     </div>
@@ -88,8 +98,8 @@ export default function Dashboard(props) {
                         </table>
                     </div>
                 </section>
-            </div>  
-            <EmployeeInfo
+            </div>
+            <EditEmployeeData
                 openPopup = {openPopup}
                 setOpenPopup = {setOpenPopup}
             >
@@ -101,64 +111,84 @@ export default function Dashboard(props) {
                         </div>
                         <div class="mb-0">
                             <label for="exampleInputPassword1" class="form-label">First Name :</label>
-                            <input type="text" class="form-control" id="exampleFirstName" value={recordinfo.FirstName} disabled />
+                            <input type="text" class="form-control" id="exampleFirstName" value={recordinfo.FirstName} />
                         </div>
                         <div class="mb-0">
                             <label for="exampleInputEmail1" class="form-label">Last Name :</label>
-                            <input type="text" class="form-control" id="exampleLastName" value={recordinfo.LastName} disabled />
+                            <input type="text" class="form-control" id="exampleLastName" value={recordinfo.LastName} />
                         </div>
                         <div class="mb-0">
                             <label for="exampleInputPassword1" class="form-label">Date of Birth :</label>
-                            <input type="text" class="form-control" id="exampleDoB" value={recordinfo.DoB} disabled />
+                            <input type="text" class="form-control" id="exampleDoB" value={recordinfo.DoB} />
                         </div>
                         <div class="mb-0">
                             <label for="exampleInputEmail1" class="form-label">NIC Number :</label>
-                            <input type="text" class="form-control" id="exampleNIC" value={recordinfo.NIC} disabled />
+                            <input type="text" class="form-control" id="exampleNIC" value={recordinfo.NIC} />
                         </div>
                         <div class="mb-0">
                             <label for="exampleInputPassword1" class="form-label">Address 1 :</label>
-                            <input type="text" class="form-control" id="exampleAddress1" value={recordinfo.address1} disabled />
+                            <input type="text" class="form-control" id="exampleAddress1" value={recordinfo.address1} />
                         </div>
                         <div class="mb-0">
                             <label for="exampleInputEmail1" class="form-label">Address 2 :</label>
-                            <input type="text" class="form-control" id="exampleAddress2" value={recordinfo.address2} disabled />
+                            <input type="text" class="form-control" id="exampleAddress2" value={recordinfo.address2} />
                         </div>
                         <div class="mb-0">
                             <label for="exampleInputPassword1" class="form-label">Address 3 :</label>
-                            <input type="text" class="form-control" id="exampleAddress3" value={recordinfo.address3} disabled />
+                            <input type="text" class="form-control" id="exampleAddress3" value={recordinfo.address3} />
                         </div>
                         <div class="mb-0">
                             <label for="exampleInputEmail1" class="form-label">Contact Number 1 :</label>
-                            <input type="text" class="form-control" id="exampleContactNo1" value={recordinfo.contactNo1} disabled />
+                            <input type="text" class="form-control" id="exampleContactNo1" value={recordinfo.contactNo1} />
                         </div>
                         <div class="mb-0">
                             <label for="exampleInputPassword1" class="form-label">Contact Number 2 :</label>
-                            <input type="text" class="form-control" id="exampleContactNo2" value={recordinfo.contactNo2} disabled />
+                            <input type="text" class="form-control" id="exampleContactNo2" value={recordinfo.contactNo2} />
                         </div>
                         <div class="mb-0">
                             <label for="exampleInputEmail1" class="form-label">Contact Number 3 :</label>
-                            <input type="text" class="form-control" id="exampleContactNo3" value={recordinfo.contactNo3} disabled />
+                            <input type="text" class="form-control" id="exampleContactNo3" value={recordinfo.contactNo3} />
                         </div>
                         <div class="mb-0">
                             <label for="exampleInputPassword1" class="form-label">Department :</label>
-                            <input type="text" class="form-control" id="exampleDepartment" value={recordinfo.Department} disabled />
+                            <input type="text" class="form-control" id="exampleDepartment" value={recordinfo.Department} />
                         </div>
                         <div class="mb-0">
                             <label for="exampleInputPassword1" class="form-label">Designation :</label>
-                            <input type="text" class="form-control" id="exampleDesignation" value={recordinfo.Designation} disabled />
+                            <input type="text" class="form-control" id="exampleDesignation" value={recordinfo.Designation} />
                         </div>
                         <div class="mb-3">
                             <label for="exampleInputPassword1" class="form-label">Registered Date :</label>
-                            <input type="text" class="form-control" id="exampleRegisteredDate" value={recordinfo.RegisteredDate} disabled />
+                            <input type="text" class="form-control" id="exampleRegisteredDate" value={recordinfo.RegisteredDate} />
+                        </div>
+                        <div>
+                            <Stack direction='row' spacing={50}>
+                                <Button type="submit" class="btn btn-primary" onClick={() => {setOpenPopup(false)}}>Update</Button>
+                                <Button type="submit" class="btn btn-primary" style={{backgroundColor: '#ff0000',borderColor: '#ff0000'}} onClick={() => {setOpenPopup(false)}}>Delete</Button>
+                            </Stack>
                         </div>
                     </form>
                 </div>  
-            </EmployeeInfo>
+            </EditEmployeeData>
+            <AddDepartment
+                DopenPopup = {DopenPopup}
+                DsetOpenPopup = {DsetOpenPopup}
+            >
+                <div className="md-5">
+                    <form>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">Department :</label>
+                            <input type="text" class="form-control" id="exampleDepartment" value={recordinfo.Department} />
+                        </div>
+                        <div>
+                            <Stack direction='row' spacing={50}>
+                                <Button type="submit" class="btn btn-primary" style={{backgroundColor: '#097969',borderColor: '#097969'}} onClick={() => {setOpenPopup(false)}}><i className="fa fa-plus me-2"></i>Add </Button>
+                                <Button type="submit" class="btn btn-primary" onClick={() => {setOpenPopup(false)}}>Close</Button>
+                            </Stack>
+                        </div>
+                    </form>
+                </div>
+            </AddDepartment>
         </div>
-        
     )
 }
-
-
-
-// onClick={() => alert("Employee ID :" + employee._id + "\nFirst Name :" + employee.FirstName +"\nLast Name :" + employee.LastName + "\nDate of Birth :" + employee.DoB + "\nNIC :" + employee.NIC + "\nAddress 01 :" + employee.address1 + "\nAddress 02 : " + employee.address2 + "\nAddress 03 :" + employee.address3 + "\nContact No 01 :" + employee.contactNo1 + "\nContact No 02 :" + employee.contactNo2 + "\nContact No 03 :" + employee.contactNo3 + "\nDepartment :" + employee.Department + "\nDesignation :" + employee.Designation + "\nRegistered Date :" + employee.RegisteredDate)}

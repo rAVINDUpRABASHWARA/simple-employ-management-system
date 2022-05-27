@@ -24,7 +24,7 @@ export default function Navbar() {
                         <a class="nav-link" href="/contact">Contact</a>
                         </li>
                     </ul>
-                    <a class="navbar-brand fw-bolder fs-4 mx-auto" href="#">Employee Management System</a>
+                    <a class="navbar-brand fw-bolder fs-4 mx-auto" href="#">EMS</a>
                     
                         <NavLink to="/login" className="btn btn-outline-primary ms-auto px-4 rounded-pill">
                             <i className="fa fa-sign-in me-2"></i>Login</NavLink>
@@ -32,6 +32,8 @@ export default function Navbar() {
                             <i className="fa fa-sign-out me-2"></i>DashBoard</NavLink>
                         <NavLink to="/addemployee" className="btn btn-outline-primary ms-auto px-4 rounded-pill">
                             <i className="fa fa-sign-in me-2"></i>Add Employee</NavLink>
+                        <NavLink to="/editdata" className="btn btn-outline-primary ms-auto px-4 rounded-pill">
+                            <i className="fa fa-sign-in me-2"></i>Edit Data</NavLink>
                         <NavLink to="/logout" className="btn btn-outline-primary ms-auto px-4 rounded-pill">
                             <i className="fa fa-sign-out me-2"></i>Logout</NavLink>
                     </div>
