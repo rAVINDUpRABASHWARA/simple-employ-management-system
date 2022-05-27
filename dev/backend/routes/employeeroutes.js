@@ -108,17 +108,18 @@ router.get(
 //Get One Employee
 
 router.get(
-    '/one_employee',
+    '/one_employee/:id',
     // isAdmin,
     // isAuth,
     expressAsyncHandler(async (req, res) => {
-        const remployee = await employee.findOne({NIC: req.body.NIC });
+        const remployee = await employee.findById(req.params.id);
         if(remployee) {
             res.send(remployee);
         }
         res.status(401).send({ message: 'Employee dose not exists.'});
     })
 )
+
 
 //update Employee details
 
