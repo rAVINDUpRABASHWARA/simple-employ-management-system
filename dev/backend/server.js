@@ -8,6 +8,7 @@ import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
 
 import employeeRouter from './routes/employeeroutes.js';
+import depatanddesigrouter from './routes/depat&desigroutes.js';
 
 const app = express();
 
@@ -41,6 +42,7 @@ connection.once("open", ()=> {
 the model files will load to the server */
 
 app.use('/api/employee', employeeRouter);
+app.use('/api/depatanddesig', depatanddesigrouter);
 
 //get the current port number
 app.listen(PORT, () => {
