@@ -1,7 +1,10 @@
 import axios from 'axios';
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router';
 
 export default function AddEmployee() {
+
+    const navigate = useNavigate();
 
     const [FirstName, setfirstName] = useState('');
     const [LastName, setlastName] = useState('');
@@ -32,6 +35,7 @@ export default function AddEmployee() {
         axios.post('/add_employee', NewEmployee)
         .then(() => {
             alert("Employee Added");
+            navigate('/dashboad')
         }).catch((err) => {
             alert(err);
         })

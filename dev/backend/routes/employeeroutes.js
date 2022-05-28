@@ -116,7 +116,7 @@ router.get(
         if(remployee) {
             res.send(remployee);
         }
-        res.status(401).send({ message: 'Employee dose not exists.'});
+        res.status(404).send({ message: 'Employee dose not exists.'});
     })
 )
 
@@ -124,7 +124,7 @@ router.get(
 //update Employee details
 
 router.put(
-    '/update_employee',
+    '/update_employee/:id',
     // isAdmin,
     // isAuth,
     expressAsyncHandler(async (req, res) => {
@@ -140,7 +140,7 @@ router.put(
             remployee.contactNo1 = req.body.contactNo1 || remployee.contactNo1;
             remployee.contactNo2 = req.body.contactNo2 || remployee.contactNo2;
             remployee.contactNo3 = req.body.contactNo3 || remployee.contactNo3;
-            remployee.password = req.body.password || remployee.password;
+            // remployee.password = req.body.password || remployee.password;
 
             const update_employee = await remployee.save();
             res.send({ message: 'Employee Updated', remployee: update_employee });

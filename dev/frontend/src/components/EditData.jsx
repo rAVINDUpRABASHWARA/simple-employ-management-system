@@ -13,6 +13,58 @@ export default function EditData() {
     const [DopenPopup, DsetOpenPopup] = useState(false);
     const [recordinfo, setRecordInfo] = useState([]);
 
+    const [editFormData, setEditFormData] = useState({
+        _id: '',
+        FirstName: '',
+        LastName: '',
+        DoB: '',
+        NIC: '',
+        address1: '',
+        address2: '',
+        address3: '',
+        contactNo1: '',
+        contactNo2: '',
+        contactNo3: '',
+        Department: '',
+        Designation: '',
+        RegisteredDate: '',
+    })
+
+    const handleEditFormChange = (e) => {
+        e.preventDefault();
+
+        const fieldName = e.target.getAttribute("name");
+        const fieldValue = e.target.value;
+
+        const newFormData = { ...editFormData }; 
+        newFormData[fieldName] = fieldValue;
+
+        setEditFormData(newFormData);
+    }
+
+    const updateEmployee = (data) => {
+        // alert(data.FirstName + " " + data.LastName + " " + data._id);
+
+        axios.put(`/update_employee/${data._id}`, data)
+        .then(() => {
+            alert("The Employee is updated.");
+        }).catch((error) => {
+            alert(error);
+        })
+        setOpenPopup(false)
+    }
+
+    const deleteEmployee = (id) => {
+        axios.delete(`/delete_employee/${id}`)
+        .then(() => {
+            alert("This record is deleted");
+        }).catch((error) => {
+            console.log(error);
+            alert("This record cannot delete");
+        })
+        setOpenPopup(false);
+    }
+
     const getEmployeeData = async () => {
         try {
             const data = await axios.get('/employees');
@@ -36,15 +88,34 @@ export default function EditData() {
         getEmployeeData();
     }, []);
 
-
     const openDPopup = () => {
         DsetOpenPopup(true)
     }
 
-    const openInPopup = id => {
-        console.log(id);
+    const openInPopup = (data) => {
+        console.log(data._id);
         setOpenPopup(true);
-        getOneEmployeeData(id);
+        getOneEmployeeData(data._id);
+
+        const formValues = {
+            _id: data._id,
+            FirstName: data.FirstName,
+            LastName: data.LastName,
+            DoB: data.DoB,
+            NIC: data.NIC,
+            address1: data.address1,
+            address2: data.address2,
+            address3: data.address3,
+            contactNo1: data.contactNo1,
+            contactNo2: data.contactNo2,
+            contactNo3: data.contactNo3,
+            Department: data.Department,
+            Designation: data.Designation,
+            RegisteredDate: data.RegisteredDate,
+        }
+
+        setEditFormData(formValues);
+
     }
     return (
         <div>
@@ -59,9 +130,9 @@ export default function EditData() {
                                 </p>
                                 <div className="button d-flex justify-content-center mb-5">
                                 <button className="btn btn-light me-4 rounded-pill px-4 py-2">
-                                    Edit Employee Data</button>
+                                    <i className="fa fa-edit me-2"></i>Edit Employee Data</button>
                                 <button onClick={() => openDPopup()} className="btn btn-outline-light me-4 rounded-pill px-4 py-2">
-                                    Add Department</button>
+                                    <i className="fa fa-plus me-2"></i>Add Department</button>
                             </div>
                             </div>
                         </div>
@@ -83,7 +154,7 @@ export default function EditData() {
                             </thead>
                             <tbody>
                                 {employees.map((employee) => (
-                                    <tr onClick={() => openInPopup(employee._id)}>
+                                    <tr onClick={() => openInPopup(employee)}>
                                     <td>{employee._id}</td>
                                     <td>{employee.FirstName}</td>
                                     <td>{employee.LastName}</td>
@@ -107,64 +178,64 @@ export default function EditData() {
                     <form>
                         <div class="mb-0">
                             <label for="exampleInputEmail1" class="form-label">Employee ID :</label>
-                            <input type="text" class="form-control" id="example_id" value={recordinfo._id} disabled/>
+                            <input type="text" class="form-control" id="example_id" name='_id' value={editFormData._id} disabled/>
                         </div>
                         <div class="mb-0">
                             <label for="exampleInputPassword1" class="form-label">First Name :</label>
-                            <input type="text" class="form-control" id="exampleFirstName" value={recordinfo.FirstName} />
+                            <input name='FirstName' type="text" class="form-control" id="exampleFirstName" onChange={handleEditFormChange} value={editFormData.FirstName} />
                         </div>
                         <div class="mb-0">
                             <label for="exampleInputEmail1" class="form-label">Last Name :</label>
-                            <input type="text" class="form-control" id="exampleLastName" value={recordinfo.LastName} />
+                            <input name='LastName' type="text" class="form-control" id="exampleLastName" onChange={handleEditFormChange} value={editFormData.LastName} />
                         </div>
                         <div class="mb-0">
                             <label for="exampleInputPassword1" class="form-label">Date of Birth :</label>
-                            <input type="text" class="form-control" id="exampleDoB" value={recordinfo.DoB} />
+                            <input name='DoB' type="text" class="form-control" id="exampleDoB" onChange={handleEditFormChange} value={editFormData.DoB} />
                         </div>
                         <div class="mb-0">
                             <label for="exampleInputEmail1" class="form-label">NIC Number :</label>
-                            <input type="text" class="form-control" id="exampleNIC" value={recordinfo.NIC} />
+                            <input name='NIC' type="text" class="form-control" id="exampleNIC" onChange={handleEditFormChange} value={editFormData.NIC} />
                         </div>
                         <div class="mb-0">
                             <label for="exampleInputPassword1" class="form-label">Address 1 :</label>
-                            <input type="text" class="form-control" id="exampleAddress1" value={recordinfo.address1} />
+                            <input name='address1' type="text" class="form-control" id="exampleAddress1" onChange={handleEditFormChange} value={editFormData.address1} />
                         </div>
                         <div class="mb-0">
                             <label for="exampleInputEmail1" class="form-label">Address 2 :</label>
-                            <input type="text" class="form-control" id="exampleAddress2" value={recordinfo.address2} />
+                            <input name='address2' type="text" class="form-control" id="exampleAddress2" onChange={handleEditFormChange} value={editFormData.address2} />
                         </div>
                         <div class="mb-0">
                             <label for="exampleInputPassword1" class="form-label">Address 3 :</label>
-                            <input type="text" class="form-control" id="exampleAddress3" value={recordinfo.address3} />
+                            <input name='address3' type="text" class="form-control" id="exampleAddress3" onChange={handleEditFormChange} value={editFormData.address3} />
                         </div>
                         <div class="mb-0">
                             <label for="exampleInputEmail1" class="form-label">Contact Number 1 :</label>
-                            <input type="text" class="form-control" id="exampleContactNo1" value={recordinfo.contactNo1} />
+                            <input name='contactNo1' type="text" class="form-control" id="exampleContactNo1" onChange={handleEditFormChange} value={editFormData.contactNo1} />
                         </div>
                         <div class="mb-0">
                             <label for="exampleInputPassword1" class="form-label">Contact Number 2 :</label>
-                            <input type="text" class="form-control" id="exampleContactNo2" value={recordinfo.contactNo2} />
+                            <input name='contactNo2' type="text" class="form-control" id="exampleContactNo2" onChange={handleEditFormChange} value={editFormData.contactNo2} />
                         </div>
                         <div class="mb-0">
                             <label for="exampleInputEmail1" class="form-label">Contact Number 3 :</label>
-                            <input type="text" class="form-control" id="exampleContactNo3" value={recordinfo.contactNo3} />
+                            <input name='contactNo3' type="text" class="form-control" id="exampleContactNo3" onChange={handleEditFormChange} value={editFormData.contactNo3} />
                         </div>
                         <div class="mb-0">
                             <label for="exampleInputPassword1" class="form-label">Department :</label>
-                            <input type="text" class="form-control" id="exampleDepartment" value={recordinfo.Department} />
+                            <input name='Department' type="text" class="form-control" id="exampleDepartment" onChange={handleEditFormChange} value={editFormData.Department} />
                         </div>
                         <div class="mb-0">
                             <label for="exampleInputPassword1" class="form-label">Designation :</label>
-                            <input type="text" class="form-control" id="exampleDesignation" value={recordinfo.Designation} />
+                            <input name='Designation' type="text" class="form-control" id="exampleDesignation" onChange={handleEditFormChange}  value={editFormData.Designation} />
                         </div>
                         <div class="mb-3">
                             <label for="exampleInputPassword1" class="form-label">Registered Date :</label>
-                            <input type="text" class="form-control" id="exampleRegisteredDate" value={recordinfo.RegisteredDate} />
+                            <input name='RegisteredDate' type="text" class="form-control" id="exampleRegisteredDate" value={editFormData.RegisteredDate} disabled/>
                         </div>
                         <div>
                             <Stack direction='row' spacing={50}>
-                                <Button type="submit" class="btn btn-primary" onClick={() => {setOpenPopup(false)}}>Update</Button>
-                                <Button type="submit" class="btn btn-primary" style={{backgroundColor: '#ff0000',borderColor: '#ff0000'}} onClick={() => {setOpenPopup(false)}}>Delete</Button>
+                                <Button type="submit" class="btn btn-primary" onClick={() => {updateEmployee(editFormData)}}>Update</Button>
+                                <Button type="submit" class="btn btn-primary" style={{backgroundColor: '#ff0000',borderColor: '#ff0000'}} onClick={() => {deleteEmployee(recordinfo._id)}}>Delete</Button>
                             </Stack>
                         </div>
                     </form>
