@@ -7,7 +7,7 @@ export default function AddDepartment(props) {
     
     return (
         
-            <Dialog open={DopenPopup} maxWidth='sm' fullWidth='true'>
+            <Dialog open={DopenPopup} maxWidth='sm' fullWidth= "true">
                 <DialogTitle>
                     <div>Add New Department</div>
                 </DialogTitle>
