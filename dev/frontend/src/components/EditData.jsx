@@ -6,6 +6,7 @@ import Button from '@mui/material/Button';
 import EditEmployeeData from '../Screens/EditEmployeeData';
 import AddDepartment from '../Screens/AddDepartment';
 import Navbardhasboard from './Navbardashboard';
+import DeleteEmployee from '../Screens/DeleteEmployee';
 
 export default function EditData() {
 
@@ -58,6 +59,7 @@ export default function EditData() {
         axios.delete(`/delete_employee/${id}`)
         .then(() => {
             alert("This record is deleted");
+            //DsetOpenPopup(true)
         }).catch((error) => {
             console.log(error);
             alert("This record cannot delete");
@@ -191,34 +193,34 @@ export default function EditData() {
                         </div>
                         <div className="mb-0">
                             <label for="exampleInputPassword1" className="form-label">Date of Birth :</label>
-                            <input name='DoB' type="text" className="form-control" id="exampleDoB" onChange={handleEditFormChange} value={editFormData.DoB} />
+                            <input name='DoB' type="date" className="form-control" id="exampleDoB" onChange={handleEditFormChange} value={editFormData.DoB} />
                         </div>
                         <div className="mb-0">
                             <label for="exampleInputEmail1" className="form-label">NIC Number :</label>
                             <input name='NIC' type="text" className="form-control" id="exampleNIC" onChange={handleEditFormChange} value={editFormData.NIC} />
                         </div>
                         <div className="mb-0">
-                            <label for="exampleInputPassword1" className="form-label">Address 1 :</label>
+                            <label for="exampleInputPassword1" className="form-label">Home Address :</label>
                             <input name='address1' type="text" className="form-control" id="exampleAddress1" onChange={handleEditFormChange} value={editFormData.address1} />
                         </div>
                         <div className="mb-0">
-                            <label for="exampleInputEmail1" className="form-label">Address 2 :</label>
+                            <label for="exampleInputEmail1" className="form-label">Business Address :</label>
                             <input name='address2' type="text" className="form-control" id="exampleAddress2" onChange={handleEditFormChange} value={editFormData.address2} />
                         </div>
                         <div className="mb-0">
-                            <label for="exampleInputPassword1" className="form-label">Address 3 :</label>
+                            <label for="exampleInputPassword1" className="form-label">Shipping Address :</label>
                             <input name='address3' type="text" className="form-control" id="exampleAddress3" onChange={handleEditFormChange} value={editFormData.address3} />
                         </div>
                         <div className="mb-0">
-                            <label for="exampleInputEmail1" className="form-label">Contact Number 1 :</label>
+                            <label for="exampleInputEmail1" className="form-label">Mobile Contact No :</label>
                             <input name='contactNo1' type="text" className="form-control" id="exampleContactNo1" onChange={handleEditFormChange} value={editFormData.contactNo1} />
                         </div>
                         <div className="mb-0">
-                            <label for="exampleInputPassword1" className="form-label">Contact Number 2 :</label>
+                            <label for="exampleInputPassword1" className="form-label">Business Contact No :</label>
                             <input name='contactNo2' type="text" className="form-control" id="exampleContactNo2" onChange={handleEditFormChange} value={editFormData.contactNo2} />
                         </div>
                         <div className="mb-0">
-                            <label for="exampleInputEmail1" className="form-label">Contact Number 3 :</label>
+                            <label for="exampleInputEmail1" className="form-label">Local Contact No :</label>
                             <input name='contactNo3' type="text" className="form-control" id="exampleContactNo3" onChange={handleEditFormChange} value={editFormData.contactNo3} />
                         </div>
                         <div className="mb-0">
@@ -234,8 +236,9 @@ export default function EditData() {
                             <input name='RegisteredDate' type="text" className="form-control" id="exampleRegisteredDate" value={editFormData.RegisteredDate} disabled/>
                         </div>
                         <div>
-                            <Stack direction='row' spacing={50}>
+                            <Stack direction='row' spacing={20}>
                                 <Button type="submit" class="btn btn-primary" onClick={() => {updateEmployee(editFormData)}}>Update</Button>
+                                <Button type="submit" class="btn btn-primary" onClick={() => {setOpenPopup(false)}}>Close</Button>
                                 <Button type="submit" class="btn btn-primary" style={{backgroundColor: '#ff0000',borderColor: '#ff0000'}} onClick={() => {deleteEmployee(recordinfo._id)}}>Delete</Button>
                             </Stack>
                         </div>
@@ -261,6 +264,7 @@ export default function EditData() {
                     </form>
                 </div>
             </AddDepartment>
+            <DeleteEmployee></DeleteEmployee>
         </div>
     )
 }
