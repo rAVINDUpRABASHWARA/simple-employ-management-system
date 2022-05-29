@@ -12,6 +12,7 @@ import Logout from './components/Logout';
 import Dashboard from './components/Dashboard';
 import AddEmployee from './components/AddEmployee';
 import EditData from './components/EditData';
+import ProtectedRoute from './ProtectedRoute';
 
 function App() {
   return (

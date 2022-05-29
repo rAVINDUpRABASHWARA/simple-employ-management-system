@@ -20,7 +20,7 @@ export default function Logout() {
                 window.alert("Please Logout Later");
             } else {
                 navigate.push('/');
-                window.location.reload()
+                window.location.reload();
             }
         } catch(error) {
             console.log(error)

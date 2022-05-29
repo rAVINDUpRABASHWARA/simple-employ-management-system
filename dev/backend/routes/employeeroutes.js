@@ -30,8 +30,8 @@ router.post(
             address1: req.body.address1,
             contactNo1: req.body.contactNo1,
             password: bcryptjs.hashSync(req.body.password),
-            Department: req.body.Department,
-            Designation: req.body.Designation
+            Department: req.body.rDepartment,
+            Designation: req.body.rDesignation
         });
         const remployee = await newEmployee.save();
         res.send({
@@ -196,7 +196,12 @@ router.post(
 
 //Logout 
 
-
+router.get('/logout', 
+    expressAsyncHandler( async(req, res) => {
+        res.clearCookie("jwt", {path: '/'})
+        res.status(200).send("User Logged Out");
+    })
+)
 
 
 
