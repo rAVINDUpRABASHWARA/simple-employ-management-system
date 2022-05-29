@@ -15,6 +15,8 @@ Creating a simple employ management system using MERN stack
   <li>Modify the <b>package.json</b> file to run the backend using <code>npm start</code> code.</li>
   <li>Add some functions to check the multiple function work under one button in frontend</li>
   <li>Add 3 dependencies to frontend using <code>npm i bootstrap</code> , <code>npm i font-awesome</code> , <code>npm i react-router-dom</code></li>
+  <li>In Frontend create 2 folders in the <code>src</code> file as <strong>components and Screens</strong>.</li>
+  <li></li>
 </ol>
 
 
