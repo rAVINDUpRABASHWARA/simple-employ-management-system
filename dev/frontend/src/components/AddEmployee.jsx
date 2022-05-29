@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router';
+import Navbardhasboard from './Navbardashboard';
 
 export default function AddEmployee() {
 
@@ -79,6 +80,7 @@ export default function AddEmployee() {
 
     return (
         <div>
+            <Navbardhasboard/>
             <div>
                 <section id="home-2">
                     <div className="container">
