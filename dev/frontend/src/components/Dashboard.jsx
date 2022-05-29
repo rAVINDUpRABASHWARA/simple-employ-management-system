@@ -118,27 +118,27 @@ export default function Dashboard(props) {
                             <input type="text" className="form-control" id="exampleNIC" value={recordinfo.NIC} disabled />
                         </div>
                         <div className="mb-0">
-                            <label for="exampleInputPassword1" className="form-label">Address 1 :</label>
+                            <label for="exampleInputPassword1" className="form-label">Home Address :</label>
                             <input type="text" className="form-control" id="exampleAddress1" value={recordinfo.address1} disabled />
                         </div>
                         <div className="mb-0">
-                            <label for="exampleInputEmail1" className="form-label">Address 2 :</label>
+                            <label for="exampleInputEmail1" className="form-label">Business Address :</label>
                             <input type="text" className="form-control" id="exampleAddress2" value={recordinfo.address2} disabled />
                         </div>
                         <div className="mb-0">
-                            <label for="exampleInputPassword1" className="form-label">Address 3 :</label>
+                            <label for="exampleInputPassword1" className="form-label">Shipping Address :</label>
                             <input type="text" className="form-control" id="exampleAddress3" value={recordinfo.address3} disabled />
                         </div>
                         <div className="mb-0">
-                            <label for="exampleInputEmail1" className="form-label">Contact Number 1 :</label>
+                            <label for="exampleInputEmail1" className="form-label">Mobile Contact No :</label>
                             <input type="text" className="form-control" id="exampleContactNo1" value={recordinfo.contactNo1} disabled />
                         </div>
                         <div className="mb-0">
-                            <label for="exampleInputPassword1" className="form-label">Contact Number 2 :</label>
+                            <label for="exampleInputPassword1" className="form-label">Business Contact No :</label>
                             <input type="text" className="form-control" id="exampleContactNo2" value={recordinfo.contactNo2} disabled />
                         </div>
                         <div className="mb-0">
-                            <label for="exampleInputEmail1" className="form-label">Contact Number 3 :</label>
+                            <label for="exampleInputEmail1" className="form-label">Local Contact No :</label>
                             <input type="text" className="form-control" id="exampleContactNo3" value={recordinfo.contactNo3} disabled />
                         </div>
                         <div className="mb-0">

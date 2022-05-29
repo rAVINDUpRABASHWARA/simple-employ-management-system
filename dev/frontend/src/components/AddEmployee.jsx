@@ -114,11 +114,11 @@ export default function AddEmployee() {
                                         </div>
                                         <div className="mb-3">
                                             <label htmlFor="exampleInputEmail1" className="form-label">Date of Birth</label>
-                                            <input type="text" className="form-control" id="dateOfBirth" aria-describedby="emailHelp" name='DoB' onChange={(e) => {setdateOfBirth(e.target.value)}} required  />
+                                            <input type="date" className="form-control" id="dateOfBirth" aria-describedby="emailHelp" name='DoB' onChange={(e) => {setdateOfBirth(e.target.value)}} required  />
                                         </div>
                                         <div className="mb-3">
                                             <label htmlFor="exampleInputEmail1" className="form-label">NIC Number</label>
-                                            <input type="text" className="form-control" id="nicNumber" aria-describedby="emailHelp" name='NIC' onChange={(e) => {setNIC(e.target.value)}} required  />
+                                            <input type="text" className="form-control" id="nicNumber" aria-describedby="emailHelp" name='NIC' onChange={(e) => {setNIC(e.target.value)}} required  pattern='[0-9]' maxLength="12"/>
                                         </div>
                                         <div className="mb-3">
                                             <label htmlFor="exampleInputEmail1" className="form-label">Address</label>
@@ -126,7 +126,7 @@ export default function AddEmployee() {
                                         </div>
                                         <div className="mb-3">
                                             <label htmlFor="exampleInputEmail1" className="form-label">Contact No.</label>
-                                            <input type="text" className="form-control" id="contactNo" aria-describedby="emailHelp" name='contactNo1' onChange={(e) => {setcontactNo(e.target.value)}} required  />
+                                            <input type="text" className="form-control" id="contactNo" aria-describedby="emailHelp" name='contactNo1' onChange={(e) => {setcontactNo(e.target.value)}} required  pattern='[0-9]' maxLength='10'/>
                                         </div>
                                         <div className="mb-3">
                                             <label htmlFor="exampleInputEmail1" className="form-label">Department{rDepartment}</label>
@@ -155,7 +155,7 @@ export default function AddEmployee() {
                                         </div>
                                         <div className="mb-3">
                                             <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
-                                            <input type="password" className="form-control" id="exampleInputPassword1" name='password' onChange={(e) => {setpassword(e.target.value)}} required  />
+                                            <input type="password" className="form-control" id="exampleInputPassword1" name='password' onChange={(e) => {setpassword(e.target.value)}} required  minLength='8'/>
                                         </div>
                                         <div id="emailHelp" className="form-text mb-3">We'll never share your login details with anyone else.</div>
                                         <button type="submit" className="btn btn-primary">Add New Employee</button>
