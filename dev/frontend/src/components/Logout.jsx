@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router';
+import Navbar from './Navbar';
 
 export default function Logout() {
 
@@ -33,7 +34,7 @@ export default function Logout() {
 
     return (
         <div>
-            
+            <Navbar/>
         </div>
     )
 }

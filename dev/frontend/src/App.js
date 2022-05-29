@@ -17,7 +17,7 @@ import ProtectedRoute from './ProtectedRoute';
 function App() {
   return (
     <>
-        <Navbar/>
+        {/* <Navbar/> */}
           <Routes>
             <Route exact path='/' element={<Home/>} />
             <Route exact path='/about' element={<About/>} />

@@ -5,6 +5,7 @@ import Button from '@mui/material/Button';
 
 import EditEmployeeData from '../Screens/EditEmployeeData';
 import AddDepartment from '../Screens/AddDepartment';
+import Navbardhasboard from './Navbardashboard';
 
 export default function EditData() {
 
@@ -118,6 +119,7 @@ export default function EditData() {
     }
     return (
         <div>
+            <Navbardhasboard/>
             <div>
                 <section id="home-2">
                     <div className="container">

@@ -179,13 +179,15 @@ router.post(
         const remployee = await employee.findOne({NIC: req.body.NIC });
         if(remployee) {
             if(bcryptjs.compareSync(req.body.password, remployee.password)) {
-                res.send({
-                    _id: remployee._id,
-                    FirstName: remployee.FirstName,
-                    LastName: remployee.LastName,
-                    isAdmin: remployee.isAdmin,
-                    token: generateToken(remployee),
-                });
+                if(remployee.isAdmin){
+                    res.send({
+                        _id: remployee._id,
+                        FirstName: remployee.FirstName,
+                        LastName: remployee.LastName,
+                        isAdmin: remployee.isAdmin,
+                        token: generateToken(remployee),
+                    });
+                }
                 return;
             }
         }

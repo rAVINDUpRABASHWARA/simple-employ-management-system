@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import EmployeeInfo from '../Screens/EmployeeInfo';
+import Navbardhasboard from './Navbardashboard';
 
 export default function Dashboard(props) {
 
@@ -44,6 +45,7 @@ export default function Dashboard(props) {
 
     return (
         <div>
+            <Navbardhasboard/>
             <div>
                 <section id="home-2">
                     <div className="container">
