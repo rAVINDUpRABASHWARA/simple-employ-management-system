@@ -56,11 +56,13 @@ const employeeSchema = new mongoose.Schema(
         },
         Department: {
             type: String,
-            required: true
+            required: true,
+            default: ''
         },
         Designation: {
             type: String,
-            required: true
+            required: true,
+            default: ''
         },
         RegisteredDate: {
             type: Date,

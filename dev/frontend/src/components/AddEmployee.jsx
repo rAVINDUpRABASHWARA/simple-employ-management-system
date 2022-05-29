@@ -1,6 +1,7 @@
 import axios from 'axios';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router';
+import Navbardhasboard from './Navbardashboard';
 
 export default function AddEmployee() {
 
@@ -11,10 +12,45 @@ export default function AddEmployee() {
     const [DoB, setdateOfBirth] = useState('');
     const [NIC, setNIC] = useState('');
     const [address1, setaddress] = useState('');
+    const [rDepartment, setrdepartment] = useState('');
+    const [rDesignation, setrdesignation] = useState('');
     const [contactNo1, setcontactNo] = useState('');
-    const [Department, setdepartment] = useState('');
-    const [Designation, setdesignation] = useState('');
     const [password, setpassword] = useState('');
+    
+    const [Department, setdepartment] = useState([]);
+    const [Designation, setdesignation] = useState([]);
+
+    useEffect( () => {
+
+        const getDepartment = async () => {
+            const res= await axios.get('/depatanddesig/view_departments');
+            console.log(res.data);
+            setdepartment(await res.data);
+        }
+        getDepartment();
+
+    }, []);
+
+    useEffect( () => {
+        const getDesignation = async () => {
+            const res= await axios.get('/depatanddesig/view_designations');
+            console.log(res.data);
+            setdesignation(await res.data);
+        }
+        getDesignation();
+    }, []);
+
+    const handleDepartment = (e) => {
+        const getDepartment = e.target.value;
+        setrdepartment(getDepartment);
+        console.log(getDepartment);
+    }
+
+    const handleDesignation = (e) => {
+        const getDesignation = e.target.value;
+        setrdesignation(getDesignation);
+        console.log(getDesignation);
+    }
 
     function addEmployee(e) {
         e.preventDefault();
@@ -26,9 +62,9 @@ export default function AddEmployee() {
             NIC,
             address1,
             contactNo1,
-            Department,
-            Designation,
-            password
+            password,
+            rDepartment,
+            rDesignation,
         }
 
         console.log(NewEmployee);
@@ -44,6 +80,7 @@ export default function AddEmployee() {
 
     return (
         <div>
+            <Navbardhasboard/>
             <div>
                 <section id="home-2">
                     <div className="container">
@@ -67,44 +104,61 @@ export default function AddEmployee() {
                             <div className="col-md-6 p-5">
                                 <h1 className="display-6 fw-bolder mb-5">ADD NEW EMPLOYEE</h1>
                                     <form  onSubmit={addEmployee}>
-                                        <div class="mb-3">
-                                            <label htmlFor="exampleInputEmail1" class="form-label">First Name</label>
-                                            <input type="text" class="form-control" id="firstName" aria-describedby="emailHelp" name='FirstName' onChange={(e) => {setfirstName(e.target.value)}} required  />
+                                        <div className="mb-3">
+                                            <label htmlFor="exampleInputEmail1" className="form-label">First Name</label>
+                                            <input type="text" className="form-control" id="firstName" aria-describedby="emailHelp" name='FirstName' onChange={(e) => {setfirstName(e.target.value)}} required  />
                                         </div>
-                                        <div class="mb-3">
-                                            <label htmlFor="exampleInputEmail1" class="form-label">Last Name</label>
-                                            <input type="text" class="form-control" id="lastName" aria-describedby="emailHelp" name='LastName' onChange={(e) => {setlastName(e.target.value)}} required  />
+                                        <div className="mb-3">
+                                            <label htmlFor="exampleInputEmail1" className="form-label">Last Name</label>
+                                            <input type="text" className="form-control" id="lastName" aria-describedby="emailHelp" name='LastName' onChange={(e) => {setlastName(e.target.value)}} required  />
                                         </div>
-                                        <div class="mb-3">
-                                            <label htmlFor="exampleInputEmail1" class="form-label">Date of Birth</label>
-                                            <input type="text" class="form-control" id="dateOfBirth" aria-describedby="emailHelp" name='DoB' onChange={(e) => {setdateOfBirth(e.target.value)}} required  />
+                                        <div className="mb-3">
+                                            <label htmlFor="exampleInputEmail1" className="form-label">Date of Birth</label>
+                                            <input type="text" className="form-control" id="dateOfBirth" aria-describedby="emailHelp" name='DoB' onChange={(e) => {setdateOfBirth(e.target.value)}} required  />
                                         </div>
-                                        <div class="mb-3">
-                                            <label htmlFor="exampleInputEmail1" class="form-label">NIC Number</label>
-                                            <input type="text" class="form-control" id="nicNumber" aria-describedby="emailHelp" name='NIC' onChange={(e) => {setNIC(e.target.value)}} required  />
+                                        <div className="mb-3">
+                                            <label htmlFor="exampleInputEmail1" className="form-label">NIC Number</label>
+                                            <input type="text" className="form-control" id="nicNumber" aria-describedby="emailHelp" name='NIC' onChange={(e) => {setNIC(e.target.value)}} required  />
                                         </div>
-                                        <div class="mb-3">
-                                            <label htmlFor="exampleInputEmail1" class="form-label">Address</label>
-                                            <input type="text" class="form-control" id="address" aria-describedby="emailHelp" name='address1' onChange={(e) => {setaddress(e.target.value)}} required  />
+                                        <div className="mb-3">
+                                            <label htmlFor="exampleInputEmail1" className="form-label">Address</label>
+                                            <input type="text" className="form-control" id="address" aria-describedby="emailHelp" name='address1' onChange={(e) => {setaddress(e.target.value)}} required  />
                                         </div>
-                                        <div class="mb-3">
-                                            <label htmlFor="exampleInputEmail1" class="form-label">Contact No.</label>
-                                            <input type="text" class="form-control" id="contactNo" aria-describedby="emailHelp" name='contactNo1' onChange={(e) => {setcontactNo(e.target.value)}} required  />
+                                        <div className="mb-3">
+                                            <label htmlFor="exampleInputEmail1" className="form-label">Contact No.</label>
+                                            <input type="text" className="form-control" id="contactNo" aria-describedby="emailHelp" name='contactNo1' onChange={(e) => {setcontactNo(e.target.value)}} required  />
                                         </div>
-                                        <div class="mb-3">
-                                            <label htmlFor="exampleInputEmail1" class="form-label">Department</label>
-                                            <input type="text" class="form-control" id="department" aria-describedby="emailHelp" name='Department' onChange={(e) => {setdepartment(e.target.value)}} required  />
+                                        <div className="mb-3">
+                                            <label htmlFor="exampleInputEmail1" className="form-label">Department{rDepartment}</label>
+                                            <select name='department' className='form-control' id='department' onChange={(e) => {handleDepartment(e)}}>
+                                                <option>--Select Department--</option>
+                                                {
+                                                    Department.map( (departmentget) =>( 
+                                                        <option key={departmentget._id}>{departmentget.department}</option>
+                                                    )
+                                                )}
+                                                
+                                            </select>
+                                            {/* <input type="text" className="form-control" id="department" aria-describedby="emailHelp" name='Department' onChange={(e) => {setdepartment(e.target.value)}} required  /> */}
                                         </div>
-                                        <div class="mb-3">
-                                            <label htmlFor="exampleInputEmail1" class="form-label">Designation</label>
-                                            <input type="text" class="form-control" id="designation" aria-describedby="emailHelp" name='Designation' onChange={(e) => {setdesignation(e.target.value)}} required  />
+                                        <div className="mb-3">
+                                            <label htmlFor="exampleInputEmail1" className="form-label">Designation{rDesignation}</label>
+                                            <select name='designation' className='form-control' id='designation' onChange={(e) => {handleDesignation(e)}}>
+                                                <option>--Select designation--</option>
+                                                {
+                                                    Designation.map((designationget) => (
+                                                        <option key={designationget._id} >{designationget.designation}</option>
+                                                    )
+                                                )}
+                                            </select>
+                                            {/* <input type="text" className="form-control" id="designation" aria-describedby="emailHelp" name='Designation' onChange={(e) => {setdesignation(e.target.value)}} required  /> */}
                                         </div>
-                                        <div class="mb-3">
-                                            <label htmlFor="exampleInputPassword1" class="form-label">Password</label>
-                                            <input type="password" class="form-control" id="exampleInputPassword1" name='password' onChange={(e) => {setpassword(e.target.value)}} required  />
+                                        <div className="mb-3">
+                                            <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
+                                            <input type="password" className="form-control" id="exampleInputPassword1" name='password' onChange={(e) => {setpassword(e.target.value)}} required  />
                                         </div>
-                                        <div id="emailHelp" class="form-text mb-3">We'll never share your login details with anyone else.</div>
-                                        <button type="submit" class="btn btn-primary">Add New Employee</button>
+                                        <div id="emailHelp" className="form-text mb-3">We'll never share your login details with anyone else.</div>
+                                        <button type="submit" className="btn btn-primary">Add New Employee</button>
                                     </form>
                             </div>
                         </div>

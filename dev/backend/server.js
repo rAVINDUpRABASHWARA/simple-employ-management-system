@@ -8,6 +8,7 @@ import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
 
 import employeeRouter from './routes/employeeroutes.js';
+import depatanddesigrouter from './routes/depat&desigroutes.js';
 
 const app = express();
 
@@ -36,11 +37,19 @@ connection.once("open", ()=> {
     console.log("MongoDB Conncetion Success!!");
 })
 
-//the following line is use to create this ('http://localhost:5000/employee') url and call it 
+//the following line is use to create this ('http://localhost:5000/api/employee') url and call it 
 /* what happens in behind is that when user call that url mention above 
 the model files will load to the server */
 
 app.use('/api/employee', employeeRouter);
+app.use('/api/employee/depatanddesig', depatanddesigrouter);
+
+//logout
+
+// app.get('/logout', (req, res) => {
+//     res.clearCookie("jwt", {path: '/'})
+//     res.status(200).send("User Logged Out");
+// })
 
 //get the current port number
 app.listen(PORT, () => {

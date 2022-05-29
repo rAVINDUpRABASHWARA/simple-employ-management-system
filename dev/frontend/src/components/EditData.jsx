@@ -5,6 +5,7 @@ import Button from '@mui/material/Button';
 
 import EditEmployeeData from '../Screens/EditEmployeeData';
 import AddDepartment from '../Screens/AddDepartment';
+import Navbardhasboard from './Navbardashboard';
 
 export default function EditData() {
 
@@ -43,7 +44,6 @@ export default function EditData() {
     }
 
     const updateEmployee = (data) => {
-        // alert(data.FirstName + " " + data.LastName + " " + data._id);
 
         axios.put(`/update_employee/${data._id}`, data)
         .then(() => {
@@ -119,6 +119,7 @@ export default function EditData() {
     }
     return (
         <div>
+            <Navbardhasboard/>
             <div>
                 <section id="home-2">
                     <div className="container">
@@ -140,7 +141,7 @@ export default function EditData() {
                 </section>
                 <section id="body">
                     <div className="table">
-                        <table class="table fs-5 shadow mb-5" >
+                        <table className="table fs-5 shadow mb-5" >
                             <thead>
                                 <tr>
                                 <th scope="col">Employee ID</th>
@@ -176,61 +177,61 @@ export default function EditData() {
             >
                 <div className="md-5">
                     <form>
-                        <div class="mb-0">
-                            <label for="exampleInputEmail1" class="form-label">Employee ID :</label>
-                            <input type="text" class="form-control" id="example_id" name='_id' value={editFormData._id} disabled/>
+                        <div className="mb-0">
+                            <label for="exampleInputEmail1" className="form-label">Employee ID :</label>
+                            <input type="text" className="form-control" id="example_id" name='_id' value={editFormData._id} disabled/>
                         </div>
-                        <div class="mb-0">
-                            <label for="exampleInputPassword1" class="form-label">First Name :</label>
-                            <input name='FirstName' type="text" class="form-control" id="exampleFirstName" onChange={handleEditFormChange} value={editFormData.FirstName} />
+                        <div className="mb-0">
+                            <label for="exampleInputPassword1" className="form-label">First Name :</label>
+                            <input name='FirstName' type="text" className="form-control" id="exampleFirstName" onChange={handleEditFormChange} value={editFormData.FirstName} />
                         </div>
-                        <div class="mb-0">
-                            <label for="exampleInputEmail1" class="form-label">Last Name :</label>
-                            <input name='LastName' type="text" class="form-control" id="exampleLastName" onChange={handleEditFormChange} value={editFormData.LastName} />
+                        <div className="mb-0">
+                            <label for="exampleInputEmail1" className="form-label">Last Name :</label>
+                            <input name='LastName' type="text" className="form-control" id="exampleLastName" onChange={handleEditFormChange} value={editFormData.LastName} />
                         </div>
-                        <div class="mb-0">
-                            <label for="exampleInputPassword1" class="form-label">Date of Birth :</label>
-                            <input name='DoB' type="text" class="form-control" id="exampleDoB" onChange={handleEditFormChange} value={editFormData.DoB} />
+                        <div className="mb-0">
+                            <label for="exampleInputPassword1" className="form-label">Date of Birth :</label>
+                            <input name='DoB' type="text" className="form-control" id="exampleDoB" onChange={handleEditFormChange} value={editFormData.DoB} />
                         </div>
-                        <div class="mb-0">
-                            <label for="exampleInputEmail1" class="form-label">NIC Number :</label>
-                            <input name='NIC' type="text" class="form-control" id="exampleNIC" onChange={handleEditFormChange} value={editFormData.NIC} />
+                        <div className="mb-0">
+                            <label for="exampleInputEmail1" className="form-label">NIC Number :</label>
+                            <input name='NIC' type="text" className="form-control" id="exampleNIC" onChange={handleEditFormChange} value={editFormData.NIC} />
                         </div>
-                        <div class="mb-0">
-                            <label for="exampleInputPassword1" class="form-label">Address 1 :</label>
-                            <input name='address1' type="text" class="form-control" id="exampleAddress1" onChange={handleEditFormChange} value={editFormData.address1} />
+                        <div className="mb-0">
+                            <label for="exampleInputPassword1" className="form-label">Address 1 :</label>
+                            <input name='address1' type="text" className="form-control" id="exampleAddress1" onChange={handleEditFormChange} value={editFormData.address1} />
                         </div>
-                        <div class="mb-0">
-                            <label for="exampleInputEmail1" class="form-label">Address 2 :</label>
-                            <input name='address2' type="text" class="form-control" id="exampleAddress2" onChange={handleEditFormChange} value={editFormData.address2} />
+                        <div className="mb-0">
+                            <label for="exampleInputEmail1" className="form-label">Address 2 :</label>
+                            <input name='address2' type="text" className="form-control" id="exampleAddress2" onChange={handleEditFormChange} value={editFormData.address2} />
                         </div>
-                        <div class="mb-0">
-                            <label for="exampleInputPassword1" class="form-label">Address 3 :</label>
-                            <input name='address3' type="text" class="form-control" id="exampleAddress3" onChange={handleEditFormChange} value={editFormData.address3} />
+                        <div className="mb-0">
+                            <label for="exampleInputPassword1" className="form-label">Address 3 :</label>
+                            <input name='address3' type="text" className="form-control" id="exampleAddress3" onChange={handleEditFormChange} value={editFormData.address3} />
                         </div>
-                        <div class="mb-0">
-                            <label for="exampleInputEmail1" class="form-label">Contact Number 1 :</label>
-                            <input name='contactNo1' type="text" class="form-control" id="exampleContactNo1" onChange={handleEditFormChange} value={editFormData.contactNo1} />
+                        <div className="mb-0">
+                            <label for="exampleInputEmail1" className="form-label">Contact Number 1 :</label>
+                            <input name='contactNo1' type="text" className="form-control" id="exampleContactNo1" onChange={handleEditFormChange} value={editFormData.contactNo1} />
                         </div>
-                        <div class="mb-0">
-                            <label for="exampleInputPassword1" class="form-label">Contact Number 2 :</label>
-                            <input name='contactNo2' type="text" class="form-control" id="exampleContactNo2" onChange={handleEditFormChange} value={editFormData.contactNo2} />
+                        <div className="mb-0">
+                            <label for="exampleInputPassword1" className="form-label">Contact Number 2 :</label>
+                            <input name='contactNo2' type="text" className="form-control" id="exampleContactNo2" onChange={handleEditFormChange} value={editFormData.contactNo2} />
                         </div>
-                        <div class="mb-0">
-                            <label for="exampleInputEmail1" class="form-label">Contact Number 3 :</label>
-                            <input name='contactNo3' type="text" class="form-control" id="exampleContactNo3" onChange={handleEditFormChange} value={editFormData.contactNo3} />
+                        <div className="mb-0">
+                            <label for="exampleInputEmail1" className="form-label">Contact Number 3 :</label>
+                            <input name='contactNo3' type="text" className="form-control" id="exampleContactNo3" onChange={handleEditFormChange} value={editFormData.contactNo3} />
                         </div>
-                        <div class="mb-0">
-                            <label for="exampleInputPassword1" class="form-label">Department :</label>
-                            <input name='Department' type="text" class="form-control" id="exampleDepartment" onChange={handleEditFormChange} value={editFormData.Department} />
+                        <div className="mb-0">
+                            <label for="exampleInputPassword1" className="form-label">Department :</label>
+                            <input name='Department' type="text" className="form-control" id="exampleDepartment" onChange={handleEditFormChange} value={editFormData.Department} />
                         </div>
-                        <div class="mb-0">
-                            <label for="exampleInputPassword1" class="form-label">Designation :</label>
-                            <input name='Designation' type="text" class="form-control" id="exampleDesignation" onChange={handleEditFormChange}  value={editFormData.Designation} />
+                        <div className="mb-0">
+                            <label for="exampleInputPassword1" className="form-label">Designation :</label>
+                            <input name='Designation' type="text" className="form-control" id="exampleDesignation" onChange={handleEditFormChange}  value={editFormData.Designation} />
                         </div>
-                        <div class="mb-3">
-                            <label for="exampleInputPassword1" class="form-label">Registered Date :</label>
-                            <input name='RegisteredDate' type="text" class="form-control" id="exampleRegisteredDate" value={editFormData.RegisteredDate} disabled/>
+                        <div className="mb-3">
+                            <label for="exampleInputPassword1" className="form-label">Registered Date :</label>
+                            <input name='RegisteredDate' type="text" className="form-control" id="exampleRegisteredDate" value={editFormData.RegisteredDate} disabled/>
                         </div>
                         <div>
                             <Stack direction='row' spacing={50}>
@@ -247,14 +248,14 @@ export default function EditData() {
             >
                 <div className="md-5">
                     <form>
-                        <div class="mb-3">
-                            <label for="exampleInputPassword1" class="form-label">Department :</label>
-                            <input type="text" class="form-control" id="exampleDepartment" value={recordinfo.Department} />
+                        <div className="mb-3">
+                            <label for="exampleInputPassword1" className="form-label">Department :</label>
+                            <input type="text" className="form-control" id="exampleDepartment" value={recordinfo.Department} />
                         </div>
                         <div>
                             <Stack direction='row' spacing={50}>
-                                <Button type="submit" class="btn btn-primary" style={{backgroundColor: '#097969',borderColor: '#097969'}} onClick={() => {setOpenPopup(false)}}><i className="fa fa-plus me-2"></i>Add </Button>
-                                <Button type="submit" class="btn btn-primary" onClick={() => {setOpenPopup(false)}}>Close</Button>
+                                <Button type="submit" className="btn btn-primary" style={{backgroundColor: '#097969',borderColor: '#097969'}} onClick={() => {setOpenPopup(false)}}><i className="fa fa-plus me-2"></i>Add </Button>
+                                <Button type="submit" className="btn btn-primary" onClick={() => {setOpenPopup(false)}}>Close</Button>
                             </Stack>
                         </div>
                     </form>

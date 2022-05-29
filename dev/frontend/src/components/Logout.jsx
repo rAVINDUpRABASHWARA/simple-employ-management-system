@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router';
+import Navbar from './Navbar';
 
 export default function Logout() {
 
@@ -20,7 +21,7 @@ export default function Logout() {
                 window.alert("Please Logout Later");
             } else {
                 navigate.push('/');
-                window.location.reload()
+                window.location.reload();
             }
         } catch(error) {
             console.log(error)
@@ -33,7 +34,7 @@ export default function Logout() {
 
     return (
         <div>
-            
+            <Navbar/>
         </div>
     )
 }

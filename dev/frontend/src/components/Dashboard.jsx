@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import EmployeeInfo from '../Screens/EmployeeInfo';
+import Navbardhasboard from './Navbardashboard';
 
 export default function Dashboard(props) {
 
@@ -44,6 +45,7 @@ export default function Dashboard(props) {
 
     return (
         <div>
+            <Navbardhasboard/>
             <div>
                 <section id="home-2">
                     <div className="container">
@@ -59,7 +61,7 @@ export default function Dashboard(props) {
                 </section>
                 <section id="body">
                     <div className="table">
-                        <table class="table fs-5 shadow mb-5" >
+                        <table className="table fs-5 shadow mb-5" >
                             <thead>
                                 <tr>
                                 <th scope="col">Employee ID</th>
@@ -95,61 +97,61 @@ export default function Dashboard(props) {
             >
                 <div className="md-5">
                     <form>
-                        <div class="mb-0">
-                            <label for="exampleInputEmail1" class="form-label">Employee ID :</label>
-                            <input type="text" class="form-control" id="example_id" value={recordinfo._id} disabled/>
+                        <div className="mb-0">
+                            <label for="exampleInputEmail1" className="form-label">Employee ID :</label>
+                            <input type="text" className="form-control" id="example_id" value={recordinfo._id} disabled/>
                         </div>
-                        <div class="mb-0">
-                            <label for="exampleInputPassword1" class="form-label">First Name :</label>
-                            <input type="text" class="form-control" id="exampleFirstName" value={recordinfo.FirstName} disabled />
+                        <div className="mb-0">
+                            <label for="exampleInputPassword1" className="form-label">First Name :</label>
+                            <input type="text" className="form-control" id="exampleFirstName" value={recordinfo.FirstName} disabled />
                         </div>
-                        <div class="mb-0">
-                            <label for="exampleInputEmail1" class="form-label">Last Name :</label>
-                            <input type="text" class="form-control" id="exampleLastName" value={recordinfo.LastName} disabled />
+                        <div className="mb-0">
+                            <label for="exampleInputEmail1" className="form-label">Last Name :</label>
+                            <input type="text" className="form-control" id="exampleLastName" value={recordinfo.LastName} disabled />
                         </div>
-                        <div class="mb-0">
-                            <label for="exampleInputPassword1" class="form-label">Date of Birth :</label>
-                            <input type="text" class="form-control" id="exampleDoB" value={recordinfo.DoB} disabled />
+                        <div className="mb-0">
+                            <label for="exampleInputPassword1" className="form-label">Date of Birth :</label>
+                            <input type="text" className="form-control" id="exampleDoB" value={recordinfo.DoB} disabled />
                         </div>
-                        <div class="mb-0">
-                            <label for="exampleInputEmail1" class="form-label">NIC Number :</label>
-                            <input type="text" class="form-control" id="exampleNIC" value={recordinfo.NIC} disabled />
+                        <div className="mb-0">
+                            <label for="exampleInputEmail1" className="form-label">NIC Number :</label>
+                            <input type="text" className="form-control" id="exampleNIC" value={recordinfo.NIC} disabled />
                         </div>
-                        <div class="mb-0">
-                            <label for="exampleInputPassword1" class="form-label">Address 1 :</label>
-                            <input type="text" class="form-control" id="exampleAddress1" value={recordinfo.address1} disabled />
+                        <div className="mb-0">
+                            <label for="exampleInputPassword1" className="form-label">Address 1 :</label>
+                            <input type="text" className="form-control" id="exampleAddress1" value={recordinfo.address1} disabled />
                         </div>
-                        <div class="mb-0">
-                            <label for="exampleInputEmail1" class="form-label">Address 2 :</label>
-                            <input type="text" class="form-control" id="exampleAddress2" value={recordinfo.address2} disabled />
+                        <div className="mb-0">
+                            <label for="exampleInputEmail1" className="form-label">Address 2 :</label>
+                            <input type="text" className="form-control" id="exampleAddress2" value={recordinfo.address2} disabled />
                         </div>
-                        <div class="mb-0">
-                            <label for="exampleInputPassword1" class="form-label">Address 3 :</label>
-                            <input type="text" class="form-control" id="exampleAddress3" value={recordinfo.address3} disabled />
+                        <div className="mb-0">
+                            <label for="exampleInputPassword1" className="form-label">Address 3 :</label>
+                            <input type="text" className="form-control" id="exampleAddress3" value={recordinfo.address3} disabled />
                         </div>
-                        <div class="mb-0">
-                            <label for="exampleInputEmail1" class="form-label">Contact Number 1 :</label>
-                            <input type="text" class="form-control" id="exampleContactNo1" value={recordinfo.contactNo1} disabled />
+                        <div className="mb-0">
+                            <label for="exampleInputEmail1" className="form-label">Contact Number 1 :</label>
+                            <input type="text" className="form-control" id="exampleContactNo1" value={recordinfo.contactNo1} disabled />
                         </div>
-                        <div class="mb-0">
-                            <label for="exampleInputPassword1" class="form-label">Contact Number 2 :</label>
-                            <input type="text" class="form-control" id="exampleContactNo2" value={recordinfo.contactNo2} disabled />
+                        <div className="mb-0">
+                            <label for="exampleInputPassword1" className="form-label">Contact Number 2 :</label>
+                            <input type="text" className="form-control" id="exampleContactNo2" value={recordinfo.contactNo2} disabled />
                         </div>
-                        <div class="mb-0">
-                            <label for="exampleInputEmail1" class="form-label">Contact Number 3 :</label>
-                            <input type="text" class="form-control" id="exampleContactNo3" value={recordinfo.contactNo3} disabled />
+                        <div className="mb-0">
+                            <label for="exampleInputEmail1" className="form-label">Contact Number 3 :</label>
+                            <input type="text" className="form-control" id="exampleContactNo3" value={recordinfo.contactNo3} disabled />
                         </div>
-                        <div class="mb-0">
-                            <label for="exampleInputPassword1" class="form-label">Department :</label>
-                            <input type="text" class="form-control" id="exampleDepartment" value={recordinfo.Department} disabled />
+                        <div className="mb-0">
+                            <label for="exampleInputPassword1" className="form-label">Department :</label>
+                            <input type="text" className="form-control" id="exampleDepartment" value={recordinfo.Department} disabled />
                         </div>
-                        <div class="mb-0">
-                            <label for="exampleInputPassword1" class="form-label">Designation :</label>
-                            <input type="text" class="form-control" id="exampleDesignation" value={recordinfo.Designation} disabled />
+                        <div className="mb-0">
+                            <label for="exampleInputPassword1" className="form-label">Designation :</label>
+                            <input type="text" className="form-control" id="exampleDesignation" value={recordinfo.Designation} disabled />
                         </div>
-                        <div class="mb-3">
-                            <label for="exampleInputPassword1" class="form-label">Registered Date :</label>
-                            <input type="text" class="form-control" id="exampleRegisteredDate" value={recordinfo.RegisteredDate} disabled />
+                        <div className="mb-3">
+                            <label for="exampleInputPassword1" className="form-label">Registered Date :</label>
+                            <input type="text" className="form-control" id="exampleRegisteredDate" value={recordinfo.RegisteredDate} disabled />
                         </div>
                     </form>
                 </div>  

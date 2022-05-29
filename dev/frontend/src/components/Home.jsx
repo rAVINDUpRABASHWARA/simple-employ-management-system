@@ -1,11 +1,13 @@
 import React from 'react'
 import About from './About'
 import Contact from './Contact'
+import Navbar from './Navbar'
 import Services from './Services'
 
 export default function Home() {
     return (
         <div>
+            <Navbar/>
             <section id="home">
                 <div className="container">
                     <div className="row justify-content-center">
