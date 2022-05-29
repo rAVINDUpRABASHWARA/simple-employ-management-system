@@ -1,3 +1,4 @@
+![EMShomepage](https://user-images.githubusercontent.com/78830875/170888796-9af95e46-d694-4928-bdb1-ed9c013a9002.png)
 # simple-employ-management-system
 Creating a simple employ management system using MERN stack
 <ul>
