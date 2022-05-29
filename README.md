@@ -29,16 +29,26 @@ Creating a simple employ management system using MERN stack
   <li>Create the login to access only to the employee who has the <code>isAdmin: true</code></li>
   <li>Add validations to the forms.</li>
 </ol>
+<center><h1>Interfaces</h1></center>
 
 ![EMShomepage](https://user-images.githubusercontent.com/78830875/170888796-9af95e46-d694-4928-bdb1-ed9c013a9002.png)
+
 ![EMSaboutpage](https://user-images.githubusercontent.com/78830875/170888843-317b95c3-7da0-4493-9c06-b4572a9267b4.png)
+
 ![EMScontactuspage](https://user-images.githubusercontent.com/78830875/170888844-6cb60792-af7c-4fe8-9be3-5c920e3de29a.png)
+
 ![EMSservicespage](https://user-images.githubusercontent.com/78830875/170888845-855bfd9a-9fce-4b37-88f0-7612abbadce1.png)
+
 ![EMSdashboard](https://user-images.githubusercontent.com/78830875/170888860-b280f7b1-ecab-4f7a-a090-600035cb7730.png)
+
 ![EMSloginpage](https://user-images.githubusercontent.com/78830875/170888861-a48ff7e7-623c-4e2d-8024-e9ff3d34bb35.png)
+
 ![EMSaddemployee](https://user-images.githubusercontent.com/78830875/170888859-6b97b97b-ea92-4b00-9a2e-b4b1e92a3dea.png)
+
 ![EMSmoreinfo](https://user-images.githubusercontent.com/78830875/170888895-5ed1133b-368f-4e1b-9821-8aad52dc8f24.png)
+
 ![EMSeditdatapage](https://user-images.githubusercontent.com/78830875/170888893-30096964-4df6-4214-9f67-424b856b82a4.png)
+
 ![EMSeditdate](https://user-images.githubusercontent.com/78830875/170888894-deceee89-eae7-470a-a347-842855526192.png)
 
 
