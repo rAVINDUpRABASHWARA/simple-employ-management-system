@@ -30,6 +30,10 @@ Creating a simple employ management system using MERN stack
   <li>Add validations to the forms.</li>
 </ol>
 
+Demonstration Video Link: https://drive.google.com/file/d/1NClg9sT4EFGKqU6b694MmFP-QuNMpJXK/view?usp=sharing
+
+API Documentation Link: https://documenter.getpostman.com/view/19670954/Uz5CNeHe
+
 <h1>Interfaces</h1>
 <hr/>
 
