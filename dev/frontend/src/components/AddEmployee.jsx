@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router';
+import PWDValidatorMessage from '../Screens/PWDValidatorMessage';
 import Navbardhasboard from './Navbardashboard';
 
 export default function AddEmployee() {
@@ -19,6 +20,14 @@ export default function AddEmployee() {
     
     const [Department, setdepartment] = useState([]);
     const [Designation, setdesignation] = useState([]);
+
+    const [pwdRequisite, setPWDRequisite] = useState(false);
+    const [check, setCheck] = useState({
+        capsLetterCheck: false,
+        numberCheck: false,
+        pwdLengthCheck: false,
+        specialCharCheck: false,
+    });
 
     useEffect( () => {
 
@@ -50,6 +59,28 @@ export default function AddEmployee() {
         const getDesignation = e.target.value;
         setrdesignation(getDesignation);
         console.log(getDesignation);
+    }
+
+    //Regex password validator
+    const handleOnFocus = () => {
+        setPWDRequisite(true);
+    }
+    const handleOnBlur = () => {
+        setPWDRequisite(false)
+    }
+    const handleOnKeyUp = (e) => {
+        const {value} = e.target;
+        const capsLetterCheck = /[A-Z]/.test(value);
+        const numberCheck = /[0-9]/.test(value);
+        const pwdLengthCheck = value.length >= 8;
+        const specialCharCheck = /[!@#$%^&*]/.test(value);
+    
+    setCheck({
+        capsLetterCheck,
+        numberCheck,
+        pwdLengthCheck,
+        specialCharCheck,
+        })
     }
 
     function addEmployee(e) {
@@ -155,8 +186,14 @@ export default function AddEmployee() {
                                         </div>
                                         <div className="mb-3">
                                             <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
-                                            <input type="password" className="form-control" id="exampleInputPassword1" name='password' onChange={(e) => {setpassword(e.target.value)}} required  minLength='8'/>
+                                            <input type="password" className="form-control" id="exampleInputPassword1" name='password' onChange={(e) => {setpassword(e.target.value)}} onFocus = {handleOnFocus} onBlur = {handleOnBlur} onKeyUp = {handleOnKeyUp} required  minLength='8'/>
                                         </div>
+                                        {pwdRequisite?<PWDValidatorMessage 
+                                            capsLetterFlag = {check.capsLetterCheck?"valid" : "invalid"}
+                                            numberFlag = {check.numberCheck?"valid":"invalid"}
+                                            pwdLengthFlag = {check.pwdLengthCheck?"valid" : "invalid"}
+                                            specialCharFlag = {check.specialCharCheck?"valid" : "invalid"}
+                                        /> : null}
                                         <div id="emailHelp" className="form-text mb-3">We'll never share your login details with anyone else.</div>
                                         <button type="submit" className="btn btn-primary">Add New Employee</button>
                                     </form>
