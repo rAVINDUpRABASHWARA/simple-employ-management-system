@@ -42,14 +42,12 @@ connection.once("open", ()=> {
 the model files will load to the server */
 
 app.use('/api/employee', employeeRouter);
+
+//the following line is use to create this ('http://localhost:5000/api/employee/deptanddesig') url and call it 
+/* what happens in behind is that when user call that url mention above 
+the model files will load to the server */
 app.use('/api/employee/depatanddesig', depatanddesigrouter);
 
-//logout
-
-// app.get('/logout', (req, res) => {
-//     res.clearCookie("jwt", {path: '/'})
-//     res.status(200).send("User Logged Out");
-// })
 
 //get the current port number
 app.listen(PORT, () => {

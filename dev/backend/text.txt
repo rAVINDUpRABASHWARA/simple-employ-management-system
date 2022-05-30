@@ -1,1 +1,4 @@
 Backend for the employ management system
+
+Admin NIC: 200000403060
+Admin Password: tharindu123

@@ -52,47 +52,6 @@ router.post(
     })
 );
 
-//add employee address
-router.put(
-    '/add_address/:id',
-    // isAdmin,
-    // isAuth,
-    expressAsyncHandler(async (req, res) => {
-        const remployee = await employee.findById(req.params.id);
-        if(remployee) {
-            remployee.address2 = req.body.address2 || remployee.address2;
-            remployee.address3 = req.body.address3 || remployee.address3;
-            remployee.isAdmin = Boolean(req.body.isAdmin);
-
-            const updateEmployee = await remployee.save();
-            res.send({message: "New Address Added", remployee: updateEmployee});
-        } else {
-            res.status(404).send({message: 'Employee Not Found'});
-        }
-    })
-)
-
-
-//add employee contact Number
-router.put(
-    '/add_contact/:id',
-    // isAdmin,
-    // isAuth,
-    expressAsyncHandler(async (req, res) => {
-        const remployee = await employee.findById(req.params.id);
-        if(remployee) {
-            remployee.contactNo2 = req.body.contactNo2 || remployee.contactNo2;
-            remployee.contactNo3 = req.body.contactNo3 || remployee.contactNo3;
-            remployee.isAdmin = Boolean(req.body.isAdmin);
-
-            const updateEmployee = await remployee.save();
-            res.send({message: "New Contact No. Added", remployee: updateEmployee});
-        } else {
-            res.status(404).send({message: 'Employee Not Found'});
-        }
-    })
-)
-
 //Get All Employees
 
 router.get(
@@ -113,7 +72,7 @@ router.get(
     // isAuth,
     expressAsyncHandler(async (req, res) => {
         const remployee = await employee.findById(req.params.id);
-        if(remployee) {
+        if(remployee) { //check whether the employee is in the system
             res.send(remployee);
         }
         res.status(404).send({ message: 'Employee dose not exists.'});
@@ -129,7 +88,7 @@ router.put(
     // isAuth,
     expressAsyncHandler(async (req, res) => {
         const remployee = await employee.findById(req.params.id);
-        if(remployee) {
+        if(remployee) { //check whether the employee is in the system
             remployee.FirstName = req.body.FirstName || remployee.FirstName;
             remployee.LastName = req.body.LastName || remployee.LastName;
             remployee.DoB = req.body.DoB || remployee.DoB;
@@ -158,7 +117,7 @@ router.delete(
     // isAuth,
     expressAsyncHandler(async (req, res) => {
         const remployee = await employee.findById(req.params.id);
-        if(remployee) {
+        if(remployee) { //check whether the employee is in the system
             if (remployee.isAdmin) {
                 res.status(400).send({message: 'Can Not Delete Admin User'});
                 return;
@@ -177,9 +136,9 @@ router.post(
     '/signin',
     expressAsyncHandler(async (req, res) => {
         const remployee = await employee.findOne({NIC: req.body.NIC });
-        if(remployee) {
-            if(bcryptjs.compareSync(req.body.password, remployee.password)) {
-                if(remployee.isAdmin){
+        if(remployee) { //check whether the employee is in the system
+            if(bcryptjs.compareSync(req.body.password, remployee.password)) { //cpmpare the passwords 
+                if(remployee.isAdmin){ //check whether the isAdmin is true
                     res.send({
                         _id: remployee._id,
                         FirstName: remployee.FirstName,
