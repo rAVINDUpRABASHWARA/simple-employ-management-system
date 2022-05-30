@@ -23,6 +23,7 @@ export default function Navbardhasboard() {
                     </ul>
                     <a class="navbar-brand fw-bolder fs-4 mx-auto" href="#">Employee Management System</a>
                         <div>
+                            {/* Buttons to work after login to the system */}
                             <NavLink to="/dashboad" className="btn btn-outline-primary ms-auto px-4 rounded-pill me-3">
                                 <i className="fa fa-user me-2"></i>DashBoard</NavLink>
                             <NavLink to="/addemployee" className="btn btn-outline-primary ms-auto px-4 rounded-pill me-3">

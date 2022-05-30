@@ -1,6 +1,5 @@
 import './App.css';
 import React from 'react';
-import Navbar from './components/Navbar';
 import Home from './components/Home';
 import About from './components/About';
 import Services from './components/Services';
@@ -12,12 +11,12 @@ import Logout from './components/Logout';
 import Dashboard from './components/Dashboard';
 import AddEmployee from './components/AddEmployee';
 import EditData from './components/EditData';
-import ProtectedRoute from './ProtectedRoute';
 
 function App() {
   return (
     <>
-        {/* <Navbar/> */}
+    {/* use routes for every component */}
+
           <Routes>
             <Route exact path='/' element={<Home/>} />
             <Route exact path='/about' element={<About/>} />

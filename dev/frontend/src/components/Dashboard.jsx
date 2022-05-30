@@ -5,10 +5,12 @@ import Navbardhasboard from './Navbardashboard';
 
 export default function Dashboard(props) {
 
+//use array useStates to get the data
     const [employees, setmployee] = useState([]);
     const [openPopup, setOpenPopup] = useState(false);
     const [recordinfo, setRecordInfo] = useState([]);
 
+//requesting all employee data in database from backend
     const getEmployeeData = async () => {
         try {
             const data = await axios.get('/employees');
@@ -18,6 +20,7 @@ export default function Dashboard(props) {
         }
     };
 
+//requesting one specific employee data in database from backend
     const getOneEmployeeData = async (id) => {
         try {
             const data = await axios.get('/one_employee/' + id);
@@ -33,15 +36,12 @@ export default function Dashboard(props) {
     }, []);
 
 
+//pass the fetch data to the popup dialog box to view
     const openInPopup = id => {
         console.log(id);
         setOpenPopup(true);
         getOneEmployeeData(id);
     }
-
-    // const message = () => {
-    //     alert("working........");
-    // }
 
     return (
         <div>
@@ -74,6 +74,8 @@ export default function Dashboard(props) {
                                 </tr>
                             </thead>
                             <tbody>
+                                {/* Store the fetched data in the table rows */}
+
                                 {employees.map((employee) => (
                                     <tr onClick={() => openInPopup(employee._id)}>
                                     <td>{employee._id}</td>
@@ -91,10 +93,15 @@ export default function Dashboard(props) {
                     </div>
                 </section>
             </div>  
+
+            {/* Popup Dialog box for more employee Info */}
+
             <EmployeeInfo
                 openPopup = {openPopup}
                 setOpenPopup = {setOpenPopup}
             >
+                {/* The More info popup form */}
+
                 <div className="md-5">
                     <form>
                         <div className="mb-0">
@@ -160,7 +167,3 @@ export default function Dashboard(props) {
         
     )
 }
-
-
-
-// onClick={() => alert("Employee ID :" + employee._id + "\nFirst Name :" + employee.FirstName +"\nLast Name :" + employee.LastName + "\nDate of Birth :" + employee.DoB + "\nNIC :" + employee.NIC + "\nAddress 01 :" + employee.address1 + "\nAddress 02 : " + employee.address2 + "\nAddress 03 :" + employee.address3 + "\nContact No 01 :" + employee.contactNo1 + "\nContact No 02 :" + employee.contactNo2 + "\nContact No 03 :" + employee.contactNo3 + "\nDepartment :" + employee.Department + "\nDesignation :" + employee.Designation + "\nRegistered Date :" + employee.RegisteredDate)}

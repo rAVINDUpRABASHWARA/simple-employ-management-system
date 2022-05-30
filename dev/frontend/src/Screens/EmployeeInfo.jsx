@@ -1,4 +1,6 @@
 import React from 'react'
+
+//use material ui for the dialog box
 import { Dialog, DialogContent, DialogTitle} from '@mui/material'
 
 export default function EmployeeInfo(props) {
@@ -6,7 +8,7 @@ export default function EmployeeInfo(props) {
     const { title, children, openPopup, setOpenPopup} = props;
     
     return (
-        
+        // Imployee More Info popup dialog box
             <Dialog open={openPopup} maxWidth='sm' fullWidth='true'>
                 <DialogTitle>
                     <div>More Employee Info</div>

@@ -17,6 +17,9 @@ export default function Contact() {
                             <img src="/assets/contactus.png" alt="About" className="w-75 mt-0" />
                         </div>
                         <div className="col-md-6">
+
+                            {/* The contact form function is not implemented */}
+                            
                             <form action="">
                             <div className="mb-3">
                                 <label for="name" className="form-label">Your Name</label>
