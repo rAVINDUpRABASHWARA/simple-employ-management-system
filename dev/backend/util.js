@@ -1,5 +1,6 @@
 import  Jwt from "jsonwebtoken";
 
+//generate the token for the user
 export const generateToken = (user) => {
     return Jwt.sign(
         {
@@ -14,6 +15,7 @@ export const generateToken = (user) => {
     );
 };
 
+//provide authentication 
 export const isAuth = (req, res, next) => {
     const authorization = req.headers.authorization;
     if(authorization) {
@@ -31,6 +33,7 @@ export const isAuth = (req, res, next) => {
     }
 };
 
+//check whether the user is an admin or not
 export const isAdmin = (req, res, next) => {
     if(req.user && req.user.isAdmin) {
         next();

@@ -159,7 +159,7 @@ export default function AddEmployee() {
                                         </div>
                                         <div className="mb-3">
                                             <label htmlFor="exampleInputEmail1" className="form-label">NIC Number</label>
-                                            <input type="text" className="form-control" id="nicNumber" aria-describedby="emailHelp" name='NIC' onChange={(e) => {setNIC(e.target.value)}} required  pattern='[0-9]' maxLength="12"/>
+                                            <input type="text" className="form-control" id="nicNumber" aria-describedby="emailHelp" name='NIC' onChange={(e) => {setNIC(e.target.value)}} required maxLength="12"/>
                                         </div>
                                         <div className="mb-3">
                                             <label htmlFor="exampleInputEmail1" className="form-label">Address</label>
@@ -167,7 +167,7 @@ export default function AddEmployee() {
                                         </div>
                                         <div className="mb-3">
                                             <label htmlFor="exampleInputEmail1" className="form-label">Contact No.</label>
-                                            <input type="text" className="form-control" id="contactNo" aria-describedby="emailHelp" name='contactNo1' onChange={(e) => {setcontactNo(e.target.value)}} required  pattern='[0-9]' maxLength='10'/>
+                                            <input type="text" className="form-control" id="contactNo" aria-describedby="emailHelp" name='contactNo1' onChange={(e) => {setcontactNo(e.target.value)}} required maxLength='10'/>
                                         </div>
                                         <div className="mb-3">
                                             <label htmlFor="exampleInputEmail1" className="form-label">Department{rDepartment}</label>

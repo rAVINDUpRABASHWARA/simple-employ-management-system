@@ -1,11 +1,18 @@
+//for this js file need to import the Router function in the npm express package
 import express from "express";
 import expressAsyncHandler from "express-async-handler";
 
-
+//import employee models
 import department from "../models/department.js";
 import designation from "../models/designation.js";
 
 const router = express.Router();
+
+/* Creation of CRUD operations */
+
+//the following line is use to create this ('http://localhost:5000/employee/depatanddesig/add_department') url and call it 
+/* what happens in behind is that when user call that url mention above 
+the model files will load to the server and choose the applicable operation */
 
 //Add departments
 router.post(
