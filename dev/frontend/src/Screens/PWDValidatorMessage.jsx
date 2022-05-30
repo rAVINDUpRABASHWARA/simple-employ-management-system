@@ -1,5 +1,6 @@
 import React from 'react'
 
+//Password validator messagees
 const PWDValidatorMessage = ({
     capsLetterFlag,
     numberFlag,

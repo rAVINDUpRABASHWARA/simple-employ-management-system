@@ -6,15 +6,16 @@ import Button from '@mui/material/Button';
 import EditEmployeeData from '../Screens/EditEmployeeData';
 import AddDepartment from '../Screens/AddDepartment';
 import Navbardhasboard from './Navbardashboard';
-import DeleteEmployee from '../Screens/DeleteEmployee';
 
 export default function EditData() {
 
+//use array useStates to get the data
     const [employees, setmployee] = useState([]);
     const [openPopup, setOpenPopup] = useState(false);
     const [DopenPopup, DsetOpenPopup] = useState(false);
     const [recordinfo, setRecordInfo] = useState([]);
 
+//store edit data
     const [editFormData, setEditFormData] = useState({
         _id: '',
         FirstName: '',
@@ -32,6 +33,7 @@ export default function EditData() {
         RegisteredDate: '',
     })
 
+//Form handler
     const handleEditFormChange = (e) => {
         e.preventDefault();
 
@@ -44,6 +46,7 @@ export default function EditData() {
         setEditFormData(newFormData);
     }
 
+//requesting to update specific employee data
     const updateEmployee = (data) => {
 
         axios.put(`/update_employee/${data._id}`, data)
@@ -55,11 +58,11 @@ export default function EditData() {
         setOpenPopup(false)
     }
 
+//delete specific employee
     const deleteEmployee = (id) => {
         axios.delete(`/delete_employee/${id}`)
         .then(() => {
             alert("This record is deleted");
-            //DsetOpenPopup(true)
         }).catch((error) => {
             console.log(error);
             alert("This record cannot delete");
@@ -67,6 +70,7 @@ export default function EditData() {
         setOpenPopup(false);
     }
 
+//requesting all employee data
     const getEmployeeData = async () => {
         try {
             const data = await axios.get('/employees');
@@ -76,6 +80,7 @@ export default function EditData() {
         }
     };
 
+//requesting one specific employee data in database from backend
     const getOneEmployeeData = async (id) => {
         try {
             const data = await axios.get('/one_employee/' + id);
@@ -94,6 +99,7 @@ export default function EditData() {
         DsetOpenPopup(true)
     }
 
+//pass the fetch data to the popup dialog box to view
     const openInPopup = (data) => {
         console.log(data._id);
         setOpenPopup(true);
@@ -156,6 +162,8 @@ export default function EditData() {
                                 </tr>
                             </thead>
                             <tbody>
+                                {/* Store the fetched data in the table rows */}
+
                                 {employees.map((employee) => (
                                     <tr onClick={() => openInPopup(employee)}>
                                     <td>{employee._id}</td>
@@ -173,10 +181,15 @@ export default function EditData() {
                     </div>
                 </section>
             </div>
+
+            {/* Popup Dialog box for Edit Employee data */}
+
             <EditEmployeeData
                 openPopup = {openPopup}
                 setOpenPopup = {setOpenPopup}
             >
+                {/* The Edit popup form */}
+
                 <div className="md-5">
                     <form>
                         <div className="mb-0">
@@ -245,6 +258,9 @@ export default function EditData() {
                     </form>
                 </div>  
             </EditEmployeeData>
+
+            {/* The Add Department popup form, but the function is not implemented*/}
+
             <AddDepartment
                 DopenPopup = {DopenPopup}
                 DsetOpenPopup = {DsetOpenPopup}
@@ -264,7 +280,6 @@ export default function EditData() {
                     </form>
                 </div>
             </AddDepartment>
-            <DeleteEmployee></DeleteEmployee>
         </div>
     )
 }

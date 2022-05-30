@@ -4,46 +4,7 @@ import Axios from 'axios';
 
 export default function Login() {
 
-    // const [employee, setEmployee] = useState({
-    //     NIC : '',
-    //     password : ''
-    // });
-
-    // //Handle Input
-    // const handleChange = (event) => {
-    //     let name = event.target.name
-    //     let value = event.target.value
-
-    //     setEmployee({...employee, [name]:value})
-    // }
-
-    // //Handle Login
-    // const handleSubmit = async (event) => {
-    //     event.preventDefault();
-    //     const {NIC, password} = employee;
-    //     try {
-    //         const res = await fetch('/login', {
-    //             method : "POST",
-    //             headers : {
-    //                 "Content-Type" : "application/json"
-    //             },
-    //             body : JSON.stringify({
-    //                 NIC, password
-    //             })
-    //         });
-
-    //         if(res.status === 400 || !res) {
-    //             window.alert("Invalid Cradentials");
-    //         } else {
-    //             window.alert("Login Successfull");
-    //             window.location.reload();
-    //         }
-    //     } catch (error) {
-    //         console.log(error);
-    //     }
-    // }
-
-    //updated login function
+    // login function
 
     const navigate = useNavigate();
     const { search } = useLocation();
@@ -53,6 +14,7 @@ export default function Login() {
     const [NIC, setNIC] = useState('');
     const [password, setPassword] = useState('');
 
+//submit handler request backend to get the data from database 
     const submitHandler = async (e) => {
         e.preventDefault();
         try {
@@ -60,7 +22,7 @@ export default function Login() {
                 NIC,
                 password,
             });
-            navigate(redirect || '/dashboad')
+            navigate(redirect || '/dashboad') //if login is success the user will be redirected to the Dashboard
         } catch (err) {
             console.log(err);
         }
@@ -91,6 +53,7 @@ export default function Login() {
                             </div>
                             <div className="col-md-6 p-5">
                                 <h1 className="display-6 fw-bolder mb-5">LOGIN</h1>
+                                {/* Login Form */}
                                     <form onSubmit={submitHandler}>
                                         <div class="mb-3">
                                             <label for="exampleInputEmail1" class="form-label">NIC Number</label>
