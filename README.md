@@ -1,4 +1,4 @@
-# simple-employ-management-system
+# simple-employee-management-system
 Creating a simple employ management system using MERN stack
 <ul>
   <li>Frontend - React.js</li>
