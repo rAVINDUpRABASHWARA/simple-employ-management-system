@@ -1,5 +1,5 @@
 # simple-employee-management-system
-Creating a simple employ management system using MERN stack
+Creating a simple employ management system using Next.js
 <ul>
   <li>Frontend - Next.js</li>
   <li>Backend - Express.js</li>
